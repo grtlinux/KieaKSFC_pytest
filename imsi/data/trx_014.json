@@ -1,0 +1,147 @@
+{
+  "code": "014",
+  "desc": "마감변동분 신청내역 조회",
+  "method": "GET",
+  "url": "/deposit/invr_dpsa/transfer/closing_transaction_list",
+  "reqFields": [
+    {
+      "fieldName": "tran_date",
+      "desc": "거래일자",
+      "size": 8,
+      "type": "LONG"
+    },
+    {
+      "fieldName": "dps_mth_dscd",
+      "desc": "예치방법구분",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "prod_code",
+      "desc": "상품코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "search_type",
+      "desc": "조회 구분 코드",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "before_inquiry_trace_info",
+      "desc": "직전조회추적정보",
+      "size": 20,
+      "type": "STRING"
+    }
+  ],
+  "resFields": [
+    {
+      "fieldName": "rsp_code",
+      "desc": "응답코드",
+      "size": 5,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "rsp_msg",
+      "desc": "응답 메시지",
+      "size": 500,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "next_page_yn",
+      "desc": "다음 페이지 존재여부",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "before_inquiry_trace_info",
+      "desc": "직전조회추적정보",
+      "size": 20,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "page_record_cnt",
+      "desc": "현재 페이지 건수",
+      "size": 5,
+      "type": "ARRCOUNT"
+    },
+    {
+      "fieldName": "transaction_list",
+      "desc": "거래 목록",
+      "type": "ARROBJECT",
+      "arrMax": 100,
+      "arrFields": [
+        {
+          "fieldName": "tran_idn_num",
+          "desc": "거래식별번호",
+          "size": 8,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "account_num",
+          "desc": "계좌번호",
+          "size": 24,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "increase_closing_amt",
+          "desc": "마감변동분 증가 금액",
+          "size": 17,
+          "type": "DOUBLE",
+          "precision": 2
+        },
+        {
+          "fieldName": "decrease_closing_amt",
+          "desc": "마감변동분 감소 금액",
+          "size": 17,
+          "type": "DOUBLE",
+          "precision": 2
+        },
+        {
+          "fieldName": "after_balance_amt",
+          "desc": "거래 후 잔액",
+          "size": 17,
+          "type": "DOUBLE",
+          "precision": 2
+        },
+        {
+          "fieldName": "currency_code",
+          "desc": "통화코드",
+          "size": 3,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "prod_code",
+          "desc": "상품코드",
+          "size": 3,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "deposit_time_point_dscd",
+          "desc": "예치시점구분코드",
+          "size": 1,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "base_date",
+          "desc": "기준일자",
+          "size": 8,
+          "type": "LONG"
+        },
+        {
+          "fieldName": "rgs_mnbd_dscd",
+          "desc": "등록주체구분",
+          "size": 1,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "tran_status",
+          "desc": "거래상태(코드)",
+          "size": 2,
+          "type": "STRING"
+        }
+      ]
+    }
+  ]
+}

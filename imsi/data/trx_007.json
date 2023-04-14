@@ -1,0 +1,127 @@
+{
+  "code": "007",
+  "desc": "수시입출금 신청내역 조회",
+  "method": "GET",
+  "url": "/deposit/invr_dpsa/transfer/transaction_list",
+  "reqFields": [
+    {
+      "fieldName": "tran_date",
+      "desc": "거래일자",
+      "size": 8,
+      "type": "LONG"
+    },
+    {
+      "fieldName": "search_type",
+      "desc": "조회 구분 코드",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "prod_code",
+      "desc": "상품코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "before_inquiry_trace_info",
+      "desc": "직전조회추적정보",
+      "size": 20,
+      "type": "STRING"
+    }
+  ],
+  "resFields": [
+    {
+      "fieldName": "rsp_code",
+      "desc": "응답코드",
+      "size": 5,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "rsp_msg",
+      "desc": "응답 메시지",
+      "size": 500,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "next_page_yn",
+      "desc": "다음 페이지 존재 여부",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "before_inquiry_trace_info",
+      "desc": "직전조회추적정보",
+      "size": 20,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "page_record_cnt",
+      "desc": "현재 페이지 건수",
+      "size": 5,
+      "type": "ARRCOUNT"
+    },
+    {
+      "fieldName": "transaction_list",
+      "desc": "거래 목록",
+      "type": "ARROBJECT",
+      "arrMax": 100,
+      "arrFields": [
+        {
+          "fieldName": "tran_idn_num",
+          "desc": "거래식별번호",
+          "size": 8,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "account_num",
+          "desc": "계좌번호",
+          "size": 24,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "tran_amt",
+          "desc": "거래금액",
+          "size": 17,
+          "type": "DOUBLE",
+          "precision": 2
+        },
+        {
+          "fieldName": "currency_code",
+          "desc": "통화코드",
+          "size": 3,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "deposit_withdraw_dscd",
+          "desc": "입금출금구분코드",
+          "size": 1,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "prod_code",
+          "desc": "상품코드",
+          "size": 3,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "dps_mth_dscd",
+          "desc": "예치방법구분",
+          "size": 1,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "rgs_mnbd_dscd",
+          "desc": "등록주체구분",
+          "size": 1,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "tran_status",
+          "desc": "거래상태(코드)",
+          "size": 2,
+          "type": "STRING"
+        }
+      ]
+    }
+  ]
+}

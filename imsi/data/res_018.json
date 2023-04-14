@@ -1,0 +1,17 @@
+{
+  "rsp_code": "CODE",
+  "rsp_msg": "응답메시지입니다.",
+  "next_page_yn": "Y",
+  "before_inquiry_trace_info": "AAABBDD1122",
+  "currency_code": "AB",
+  "page_record_cnt": 2,
+  "daily_balance_list": [
+    {
+      "date": 20220818,
+      "before_date_balance_amt": 400000,
+      "increase_amt": 200,
+      "decrease_amt": 400,
+      "after_balance_amt": 300000
+    }
+  ]
+}

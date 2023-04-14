@@ -1,0 +1,175 @@
+{
+  "code": "004",
+  "desc": "수시출금 신청",
+  "method": "POST",
+  "url": "/deposit/invr_dpsa/transfer/withdraw",
+  "reqFields": [
+    {
+      "fieldName": "account_num",
+      "desc": "계좌번호",
+      "size": 24,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "currency_code",
+      "desc": "통화코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "tran_amt",
+      "desc": "거래금액",
+      "size": 17,
+      "type": "DOUBLE",
+      "precision": 2
+    },
+    {
+      "fieldName": "withdraw_reason_code",
+      "desc": "인출사유 코드",
+      "size": 2,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "settlement_info_withdraw_cnt",
+      "desc": "출금 결제정보 건수",
+      "size": 5,
+      "type": "ARRCOUNT"
+    },
+    {
+      "fieldName": "settlement_info_withdraw",
+      "desc": "출금 결제정보",
+      "type": "ARROBJECT",
+      "arrMax": 5,
+      "arrFields": [
+        {
+          "fieldName": "bank_code",
+          "desc": "금융기관코드",
+          "size": 3,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "settlement_account_num",
+          "desc": "결제 계좌번호",
+          "size": 24,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "settlement_amt",
+          "desc": "결제금액",
+          "size": 17,
+          "type": "DOUBLE",
+          "precision": 2
+        }
+      ]
+    },
+    {
+      "fieldName": "consignment_guarantee",
+      "desc": "현금위탁증거금",
+      "size": 17,
+      "type": "DOUBLE",
+      "precision": 2
+    },
+    {
+      "fieldName": "deposit_requirement_change_details_cnt",
+      "desc": "의무예치금 변동내역 건수",
+      "size": 5,
+      "type": "ARRCOUNT"
+    },
+    {
+      "fieldName": "deposit_requirement_change_details",
+      "desc": "의무예치금 변동내역",
+      "type": "ARROBJECT",
+      "arrMax": 6,
+      "arrFields": [
+        {
+          "fieldName": "deposit_requirement_type",
+          "desc": "의무예치금 종류",
+          "size": 2,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "increase_amt",
+          "desc": "증가 금액",
+          "size": 17,
+          "type": "DOUBLE",
+          "precision": 2
+        },
+        {
+          "fieldName": "decrease_amt",
+          "desc": "감소 금액",
+          "size": 17,
+          "type": "DOUBLE",
+          "precision": 2
+        }
+      ]
+    },
+    {
+      "fieldName": "optr_email_yn",
+      "desc": "조작자 이메일 동의여부",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "optr_email_address",
+      "desc": "조작자 이메일 주소",
+      "size": 200,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "apvr_email_yn",
+      "desc": "승인자 이메일 동의여부",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "apvr_email_address",
+      "desc": "승인자 이메일 주소",
+      "size": 200,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "optr_sms_yn",
+      "desc": "조작자 SMS 동의여부",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "optr_mobile_num",
+      "desc": "조작자 휴대전화 번호",
+      "size": 20,
+      "type": "LONG"
+    },
+    {
+      "fieldName": "apvr_sms_yn",
+      "desc": "승인자 SMS 동의여부",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "apvr_mobile_num",
+      "desc": "승인자 휴대전화 번호",
+      "size": 20,
+      "type": "LONG"
+    }
+  ],
+  "resFields": [
+    {
+      "fieldName": "rsp_code",
+      "desc": "응답코드",
+      "size": 5,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "rsp_msg",
+      "desc": "응답 메시지",
+      "size": 500,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "tran_idn_num",
+      "desc": "거래식별번호",
+      "size": 8,
+      "type": "STRING"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "rsp_code": "CODE",
+  "rsp_msg": "응답 메시지입니다.",
+  "currency_code": "ABC",
+  "before_date_balance_amt": 10000.0,
+  "balance_amt": 20000,
+  "excess_balance": 10000,
+  "rffp_settlement_possible_amt": 5000.0,
+  "settlement_info_withdraw_cnt": 2,
+  "settlement_info_withdraw": [
+    {
+      "bank_code": "AB",
+      "bank_name": "신한",
+      "settlement_account_num": "ABC1234",
+      "is_main_account": "Y"
+    }
+  ],
+  "settlement_info_deposit_cnt": 2,
+  "settlement_info_deposit": [
+    {
+      "bank_code": "BA",
+      "bank_name": "농협",
+      "settlement_account_num": "BBB1234",
+      "is_main_account": "N"
+    }
+  ],
+  "withdraw_reason_cnt": 2,
+  "withdraw_reason_list": [
+    {
+      "withdraw_reason_code": "CC",
+      "withdraw_reason_name": "그냥"
+    }
+  ],
+  "consignment_guarantee": 30000,
+  "deposit_requirement_change_details_cnt": 2,
+  "deposit_requirement_change_details": [
+    {
+      "deposit_requirement_type": "AA",
+      "before_date_balance_amt": 20000.12,
+      "increase_amt": 5000.12,
+      "decrease_amt": 2000.12,
+      "base_date_balance_amt": 23000
+    }
+  ]
+}

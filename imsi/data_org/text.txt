@@ -1,0 +1,624 @@
+
+#1.1 접근토큰 발급-999
+POST : /oauth/2.0/token
+REQ :
+    grant_type : 권한부여 방식 : Y : aNS(18)
+    client_id : 클라이언트 ID : Y : aN(50)
+    client_secret : 비밀번호(Secret) : Y : aN(50)
+    scope : 권한 범위 : Y : a(6)
+RES :
+    token_type : 접근토큰 유형 : a(6) : ABCD
+    access_token : 접근토큰 : aNS(1500)
+    expires_in : 접근토큰 유효기간 : N(9)
+    scope : 권한 범위 : a(6)
+
+JSON
+
+#1.1 계좌 목록 조회-001
+GET : /deposit/invr_dpsa/account_list
+REQ :
+    before_inquiry_trace_info : 직전조회추적정보 : N : AN(20)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    next_page_yn : 다음 페이지 존재여부 : A(1)
+    before_inquiry_trace_info : 직전조회추적정보 : AN(20)
+    page_record_cnt : 현재 페이지 건수 : N(5) : 2
+    account_list : 계좌 목록 : <object>(100)
+        prod_code : 상품코드 : AN(3) : CODE
+        prod_name : 상품명 : AH(40)
+        account_num : 계좌번호 : AN(24)
+        rsdn_dscd : 거주구분 : AN(1)
+        dps_mth_dscd : 예치방법구분 : AN(1)
+        deposit_time_point_dscd : 예치시점구분코드 : AN(1)
+
+JSON
+
+#1.2 계좌 목록 조회(잔액)-002
+GET : /deposit/invr_dpsa/account_list_with_balance
+REQ : 
+    dps_mth_dscd : 예치방법구분 : Y : AN(1)
+    before_inquiry_trace_info : 직전조회추적정보 : N : AN(20)
+RES : 
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    next_page_yn : 다음 페이지 존재여부 : A(1)
+    before_inquiry_trace_info : 직전조회추적정보 : AN(20)
+    page_record_cnt : 현재 페이지 건수 : N(5)
+    account_list : 계좌 목록 : <object>(100)
+        prod_code : 상품코드 : AN(3)
+        prod_name : 상품명 : AH(40)
+        account_num : 계좌번호 : AN(24)
+        rsdn_dscd : 거주구분 : AN(1)
+        dps_mth_dscd : 예치방법구분 : AN(1)
+        deposit_time_point_dscd : 예치시점구분코드 : AN(1)
+        balance_amt : 현재 잔액 : N(17,2)
+        currency_code : 통화코드 : A(3)
+
+JSON
+
+
+#1.3 계좌 기본정보 조회(수시입출금)-003
+GET : /deposit/invr_dpsa/account/on_demand
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    currency_code : 통화코드 : N : A(3)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    currency_code : 통화코드 : A(3)
+    before_date_balance_amt : 전일 잔액 : N(17,2)
+    balance_amt : 현재 잔액 : N(17,2)
+    excess_balance : 초과예치금 : N(17,2)
+    rffp_settlement_possible_amt : 지불준비금가능금액 : N(17,2)
+    settlement_info_withdraw_cnt : 출금 결제정보 건수 : N(5)
+    settlement_info_withdraw : 출금 결제정보 : <object>(5)
+        bank_code : 금융기관코드 : AN(3)
+        bank_name : 금융기관명 : AH(100)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        is_main_account : 주거래 계좌여부 : A(1)
+    settlement_info_deposit_cnt : 입금 결제정보 건수 : N(5)
+    settlement_info_deposit : 입금 결제정보 : <object>(5)
+        bank_code : 금융기관코드 : AN(3)
+        bank_name : 금융기관명 : AH(100)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        is_main_account : 주거래 계좌여부 : A(1)
+    withdraw_reason_cnt : 인출사유 건수 : N(5)
+    withdraw_reason_list : 인출사유 목록 : <object>(30)
+        withdraw_reason_code : 인출사유 코드 : AN(2)
+        withdraw_reason_name : 인출사유명 : AH(100)
+    consignment_guarantee : 현금위탁증거금 : N(17,2)
+    deposit_requirement_change_details_cnt : 의무예치금 변동내역 건수 : N(5)
+    deposit_requirement_change_details : 의무예치금 변동내역 : <object>(6)
+        deposit_requirement_type : 의무예치금 종류 : AN(2)
+        before_date_balance_amt : 전일 잔액 : N(17,2)
+        increase_amt : 증가 금액 : N(17,2)
+        decrease_amt : 감소 금액 : N(17,2)
+        base_date_balance_amt : 기준일 잔액 : N(17,2)
+
+JSON
+
+
+#1.4 수시출금 신청-004
+POST : /deposit/invr_dpsa/transfer/withdraw
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    currency_code : 통화코드 : N : A(3)
+    tran_amt : 거래금액 : Y : N(17,2)
+    withdraw_reason_code : 인출사유 코드 : Y : AN(2)
+    settlement_info_withdraw_cnt : 출금 결제정보 건수 : Y : N(5)
+    settlement_info_withdraw : 출금 결제정보 : Y : <object>(5)
+        bank_code : 금융기관코드 : AN(3)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        settlement_amt : 결제금액 : N(17,2)
+    consignment_guarantee : 현금위탁증거금 : Y : N(17,2)
+    deposit_requirement_change_details_cnt : 의무예치금 변동내역 건수 : Y : N(5)
+    deposit_requirement_change_details : 의무예치금 변동내역 : Y : <object>(6)
+        deposit_requirement_type : 의무예치금 종류 : AN(2)
+        increase_amt : 증가 금액 : N(17,2)
+        decrease_amt : 감소 금액 : N(17,2)
+    optr_email_yn : 조작자 이메일 동의여부 : N : A(1)
+    optr_email_address : 조작자 이메일 주소 : N : E(200)
+    apvr_email_yn : 승인자 이메일 동의여부 : N : A(1)
+    apvr_email_address : 승인자 이메일 주소 : N : E(200)
+    optr_sms_yn : 조작자 SMS 동의여부 : N : A(1)
+    optr_mobile_num : 조작자 휴대전화 번호 : N : N(20)
+    apvr_sms_yn : 승인자 SMS 동의여부 : N : A(1)
+    apvr_mobile_num : 승인자 휴대전화 번호 : N : N(20)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    tran_idn_num : 거래식별번호 : AN(8)
+
+JSON
+
+
+#1.5 마감후입금 신청-005
+POST : /deposit/invr_dpsa/transfer/deposit
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    currency_code : 통화코드 : N : A(3)
+    tran_amt : 거래금액 : Y : N(17,2)
+    settlement_info_deposit_cnt : 입금 결제정보 건수 : Y : N(5)
+    settlement_info_withdraw : 입금 결제정보 : Y : <object>(5)
+        bank_code : 금융기관코드 : AN(3)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        settlement_amt : 결제금액 : N(17,2)
+    consignment_guarantee : 현금위탁증거금 : Y : N(17,2)
+    deposit_requirement_change_details_cnt : 의무예치금 변동내역 건수 : Y : N(5)
+    deposit_requirement_change_details : 의무예치금 변동내역 : Y : <object>(6)
+        deposit_requirement_type : 의무예치금 종류 : AN(2)
+        increase_amt : 증가 금액 : N(17,2)
+        decrease_amt : 감소 금액 : N(17,2)
+    optr_email_yn : 조작자 이메일 동의여부 : N : A(1)
+    optr_email_address : 조작자 이메일 주소 : N : E(200)
+    apvr_email_yn : 승인자 이메일 동의여부 : N : A(1)
+    apvr_email_address : 승인자 이메일 주소 : N : E(200)
+    optr_sms_yn : 조작자 SMS 동의여부 : N : A(1)
+    optr_mobile_num : 조작자 휴대전화 번호 : N : N(20)
+    apvr_sms_yn : 승인자 SMS 동의여부 : N : A(1)
+    apvr_mobile_num : 승인자 휴대전화 번호 : N : N(20)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    tran_idn_num : 거래식별번호 : AN(8)
+
+JSON
+
+
+#1.6 수시입출금 취소-006
+POST : /deposit/invr_dpsa/transfer/cancel
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    tran_idn_num : 거래식별번호 : Y : AN(8)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+
+JSON
+
+#1.7 수시입출금 신청내역 조회-007
+GET : /deposit/invr_dpsa/transfer/transaction_list
+REQ :
+    tran_date : 거래일자 : Y : N(8)
+    search_type : 조회 구분 코드 : Y : AN(1)
+    prod_code : 상품코드 : N : AN(3)
+    before_inquiry_trace_info : 직전조회추적정보 : N : AN(20)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    next_page_yn : 다음 페이지 존재 여부 : A(1)
+    before_inquiry_trace_info : 직전조회추적정보 : AN(20)
+    page_record_cnt : 현재 페이지 건수 : N(5)
+    transaction_list : 거래 목록 : <object>(100)
+        tran_idn_num : 거래식별번호 : AN(8)
+        account_num : 계좌번호 : AN(24)
+        tran_amt : 거래금액 : N(17,2)
+        currency_code : 통화코드 : A(3)
+        deposit_withdraw_dscd : 입금출금구분코드 : AN(1)
+        prod_code : 상품코드 : AN(3)
+        dps_mth_dscd : 예치방법구분 : AN(1)
+        rgs_mnbd_dscd : 등록주체구분 : AN(1)
+        tran_status : 거래상태(코드) : AN(2)
+
+JSON
+
+
+#1.8 수시입출금 신청정보 상세조회-008
+GET : /deposit/invr_dpsa/transfer/detail
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    tran_date : 거래일자 : Y : N(8)
+    tran_idn_num : 거래식별번호 : Y : AN(8)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    withdraw_tran_amt : 출금거래금액 : N(17,2)
+    deposit_tran_amt : 입금거래금액 : N(17,2)
+    currency_code : 통화코드 : A(3)
+    prod_code : 상품코드 : AN(3)
+    tran_status : 거래상태(코드) : AN(2)
+    withdraw_reason_code : 인출사유 코드 : AN(2)
+    settlement_info_cnt : 결제정보 건수 : N(5)
+    settlement_info : 결제정보 : <object>(5)
+        bank_code : 금융기관코드 : AN(3)
+        bank_name : 금융기관명 : AH(100)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        settlement_amt : 결제금액 : N(17,2)
+    optr_email_yn : 조작자 이메일 동의여부 : A(1)
+    optr_email_address : 조작자 이메일 주소 : E(200)
+    apvr_email_yn : 승인자 이메일 동의여부 : A(1)
+    apvr_email_address : 승인자 이메일 주소 : E(200)
+    optr_sms_yn : 조작자 SMS 동의 여부 : A(1)
+    optr_mobile_num : 조작자 휴대전화 번호 : N(20)
+    apvr_sms_yn : 승인자 SMS 동의 여부 : A(1)
+    apvr_mobile_num : 승인자 휴대전화 번호 : N(20)
+
+JSON
+
+
+#1.9 계좌 기본정보 조회(마감변동분)-009
+GET : /deposit/invr_dpsa/account/closing
+REQ :
+    tran_date : 거래일자 : Y : N(8)
+    account_num : 계좌번호 : Y : AN(24)
+    currency_code : 통화코드 : N : A(3)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    tran_idn_num : 거래식별번호 : AN(8)
+    tran_status : 거래상태(코드) : AN(2)
+    currency_code : 통화코드 : A(3)
+    before_date_balance_amt : 전일 잔액 : N(17,2)
+    increase_amt : 증가 금액 : N(17,2)
+    decrease_amt : 감소 금액 : N(17,2)
+    after_balance_amt : 거래 후 잔액 : N(17,2)
+    int_dvd_amt : 이자배당금액 : N(17,2)
+    withdraw_tran_amt : 출금거래금액(당일 마감변동분) : N(17,2)
+    deposit_tran_amt : 입금거래금액(당일 마감변동분) : N(17,2)
+    withdraw_reason_cnt : 인출사유 건수 : N(5)
+    withdraw_reason_list : 인출사유 목록 : <object>(30)
+        withdraw_reason_code : 인출사유 코드 : AN(2)
+        withdraw_reason_name : 인출사유명 : AH(100)
+    settlement_info_withdraw_cnt : 출금 결제정보 건수 : N(5)
+    settlement_info_withdraw : 출금 결제정보 : <object>(5)
+        bank_code : 금융기관코드 : AN(3)
+        bank_name : 금융기관명 : AH(100)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        settlement_amt : 결제금액 : N(17,2)
+        is_main_account : 주거래 계좌여부 : A(1)
+    settlement_info_deposit_cnt : 입금 결제정보 건수 : N(5)
+    settlement_info_deposit : 입금 결제정보 : <object>(5)
+        bank_code : 금융기관코드 : AN(3)
+        bank_name : 금융기관명 : AH(100)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        settlement_amt : 결제금액 : N(17,2)
+        is_main_account : 주거래 계좌여부 : A(1)
+    consignment_guarantee : 현금위탁증거금 : N(17,2)
+    deposit_requirement_change_details_cnt : 의무예치금 변동내역 건수 : N(5)
+    deposit_requirement_change_details : 의무예치금 변동내역 : <object>(6)
+        deposit_requirement_type : 의무예치금 종류 : AN(2)
+        before_date_balance_amt : 전일 잔액 : N(17,2)
+        increase_amt : 증가 금액 : N(17,2)
+        decrease_amt : 감소 금액 : N(17,2)
+        base_date_balance_amt : 기준일 잔액 : N(17,2)
+    optr_email_yn : 조작자 이메일 동의여부 : A(1)
+    optr_email_address : 조작자 이메일 주소 : E(200)
+    apvr_email_yn : 승인자 이메일 동의여부 : A(1)
+    apvr_email_address : 승인자 이메일 주소 : E(200)
+    optr_sms_yn : 조작자 SMS 동의 여부 : A(1)
+    optr_mobile_num : 조작자 휴대전화 번호 : N(20)
+    apvr_sms_yn : 승인자 SMS 동의 여부 : A(1)
+    apvr_mobile_num : 승인자 휴대전화 번호 : N(20)
+
+JSON
+
+
+#1.10 계좌 기본정보 조회(마감변동분, 지불준비금)-010
+GET : /deposit/invr_dpsa/account/closing_and_reserve_for_payment
+REQ :
+    tran_date : 거래일자 : Y : N(8)
+    account_num : 계좌번호 : Y : AN(24)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    tran_idn_num : 거래식별번호 : AN(8)
+    base_date : 기준일자 : N(8)
+    tran_status : 거래상태(코드) : AN(2)
+    before_date_balance_amt : 전일 잔액 : N(15)
+    increase_amt : 증가 금액 : N(15)
+    decrease_amt : 감소 금액 : N(15)
+    after_balance_amt : 거래 후 잔액 : N(15)
+    int_dvd_amt : 이자배당금액 : N(15)
+    tran_date_rffp_req_amt : 거래일자 지불준비금 신청금액 : N(15)
+    specified_money_in_trust : 특정금전신탁금액 : N(15)
+    withdraw_tran_amt : 출금거래금액(당일 마감변동분) : N(15)
+    deposit_tran_amt : 입금거래금액(당일 마감변동분) : N(15)
+    withdraw_reason_cnt : 인출사유 건수 : N(5)
+    withdraw_reason_list : 인출사유 목록 : <object>(30)
+        withdraw_reason_code : 인출사유 코드 : AN(2)
+        withdraw_reason_name : 인출사유명 : AH(100)
+    settlement_info_withdraw_cnt : 출금 결제정보 건수 : N(5)
+    settlement_info_withdraw : 출금 결제정보 : <object>(5)
+        bank_code : 금융기관코드 : AN(3)
+        bank_name : 금융기관명 : AH(100)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        settlement_amt : 결제금액 : N(17,2)
+        is_main_account : 주거래 계좌여부 : A(1)
+    settlement_info_deposit_cnt : 입금 결제정보 건수 : N(5)
+    settlement_info_deposit : 입금 결제정보 : <object>(5)
+        bank_code : 금융기관코드 : AN(3)
+        bank_name : 금융기관명 : AH(100)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        settlement_amt : 결제금액 : N(17,2)
+        is_main_account : 주거래 계좌여부 : A(1)
+    next_tran_date_rffp_req_possible_amt : 익영업일 지불준비금 신청 가능 금액 : N(15)
+    next_tran_date_rffp_req_amt : 익영업일 지불준비금 신청금액 : N(15)
+    settlement_info_rffp_cnt : 지불준비금 결제정보 건수 : N(5)
+    settlement_info_rffp : 지불준비금 결제정보 : <object>(2)
+        bank_code : 금융기관코드 : AN(3)
+        bank_name : 금융기관명 : AH(100)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        settlement_amt : 결제금액 : N(15)
+        is_main_account : 주거래 계좌여부 : A(1)
+    consignment_guarantee : 현금위탁증거금 : N(15)
+    deposit_requirement_change_details_cnt : 의무예치금 변동내역 건수 : N(5)
+    deposit_requirement_change_details : 의무예치금 변동내역 : <object>(6)
+        deposit_requirement_type : 의무예치금 종류 : AN(2)
+        before_date_balance_amt : 전일 잔액 : N(15)
+        increase_amt : 증가 금액 : N(15)
+        decrease_amt : 감소 금액 : N(15)
+        base_date_balance_amt : 기준일 잔액 : N(15)
+    optr_email_yn : 조작자 이메일 동의여부 : A(1)
+    optr_email_address : 조작자 이메일 주소 : E(200)
+    apvr_email_yn : 승인자 이메일 동의여부 : A(1)
+    apvr_email_address : 승인자 이메일 주소 : E(200)
+    optr_sms_yn : 조작자 SMS 동의 여부 : A(1)
+    optr_mobile_num : 조작자 휴대전화 번호 : N(20)
+    apvr_sms_yn : 승인자 SMS 동의 여부 : A(1)
+    apvr_mobile_num : 승인자 휴대전화 번호 : N(20)
+
+JSON
+
+
+#1.11 마감변동분 신청-011
+POST : /deposit/invr_dpsa/transfer/closing
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    currency_code : 통화코드 : N : A(3)
+    increase_closing_amt : 마감변동분 증가 금액 : Y : N(17,2)
+    decrease_closing_amt : 마감변동분 감소 금액 : Y : N(17,2)
+    withdraw_reason : 인출사유 : N : AN(2)
+    settlement_info_cnt : 결제정보 건수 : Y : N(5)
+    settlement_info : 결제정보 : Y : <object>(5)
+        bank_code : 금융기관코드 : AN(3)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        settlement_amt : 결제금액 : N(17,2)
+    consignment_guarantee : 현금위탁증거금 : Y : N(17,2)
+    deposit_requirement_change_details_cnt : 의무예치금 변동내역 건수 : Y : N(5)
+    deposit_requirement_change_details : 의무예치금 변동내역 : Y : <object>(6)
+        deposit_requirement_type : 의무예치금 종류 : AN(2)
+        increase_amt : 증가 금액 : N(17,2)
+        decrease_amt : 감소 금액 : N(17,2)
+    optr_email_yn : 조작자 이메일 동의여부 : N : A(1)
+    optr_email_address : 조작자 이메일 주소 : N : E(200)
+    apvr_email_yn : 승인자 이메일 동의여부 : N : A(1)
+    apvr_email_address : 승인자 이메일 주소 : N : E(200)
+    optr_sms_yn : 조작자 SMS 동의 여부 : N : A(1)
+    optr_mobile_num : 조작자 휴대전화 번호 : N : N(20)
+    apvr_sms_yn : 승인자 SMS 동의 여부 : N : A(1)
+    apvr_mobile_num : 승인자 휴대전화 번호 : N : N(20)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    tran_idn_num : 거래식별번호 : AN(8)
+
+JSON
+
+
+#1.12 마감변동분 신처(지불준비금)-012
+POST : /deposit/invr_dpsa/transfer/closing_and_reserve_for_payment
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    base_date : 기준일자 : Y : N(8)
+    increase_closing_amt : 마감변동분 증가 금액 : Y : N(15)
+    decrease_closing_amt : 마감변동분 감소 금액 : Y : N(15)
+    withdraw_reason : 인출사유 : N : AN(2)
+    settlement_info_cnt : 결제정보 건수 : Y : N(5)
+    settlement_info : 결제정보 : Y : <object>(5)
+        bank_code : 금융기관코드 : AN(3)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        settlement_amt : 결제금액 : N(15)
+    next_tran_date_rffp_req_amt : 익영업일 지불준비금 신청금액 : Y : N(15)
+    settlement_info_rffp_cnt : 지불준비금 결제정보 건수 : Y : N(5)
+    settlement_info_rffp : 지불준비금 결제정보 : Y : <object>(2)
+        bank_code : 금융기관코드 : AN(3)
+        settlement_account_num : 결제 계좌번호 : AN(24)
+        settlement_amt : 결제금액 : N(15)
+    consignment_guarantee : 현금위탁증거금 : Y : N(15)
+    deposit_requirement_change_details_cnt : 의무예치금 변동내역 건수 : Y : N(5)
+    deposit_requirement_change_details : 의무예치금 변동내역 : Y : <object>(6)
+        deposit_requirement_type : 의무예치금 종류 : AN(2)
+        increase_amt : 증가 금액 : N(15)
+        decrease_amt : 감소 금액 : N(15)
+    optr_email_yn : 조작자 이메일 동의여부 : N : A(1)
+    optr_email_address : 조작자 이메일 주소 : N : E(200)
+    apvr_email_yn : 승인자 이메일 동의여부 : N : A(1)
+    apvr_email_address : 승인자 이메일 주소 : N : E(200)
+    optr_sms_yn : 조작자 SMS 동의 여부 : N : A(1)
+    optr_mobile_num : 조작자 휴대전화 번호 : N : N(20)
+    apvr_sms_yn : 승인자 SMS 동의 여부 : N : A(1)
+    apvr_mobile_num : 승인자 휴대전화 번호 : N : N(20)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    tran_idn_num : 거래식별번호 : AN(8)
+
+JSON
+
+
+#1.13 마감변동분 취소-013
+POST : /deposit/invr_dpsa/transfer/closing_cancel
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    tran_idn_num : 거래식별번호 : Y : AN(8)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+
+JSON
+
+
+#1.14 마감변동분 신청내역 조회-014
+GET : /deposit/invr_dpsa/transfer/closing_transaction_list
+REQ :
+    tran_date : 거래일자 : Y : N(8)
+    dps_mth_dscd : 예치방법구분 : Y : AN(1)
+    prod_code : 상품코드 : N : AN(3)
+    search_type : 조회 구분 코드 : Y : AN(1)
+    before_inquiry_trace_info : 직전조회추적정보 : N : AN(20)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    next_page_yn : 다음 페이지 존재여부 : A(1)
+    before_inquiry_trace_info : 직전조회추적정보 : AN(20)
+    page_record_cnt : 현재 페이지 건수 : N(5)
+    transaction_list : 거래 목록 : <object>(100)
+        tran_idn_num : 거래식별번호 : AN(8)
+        account_num : 계좌번호 : AN(24)
+        increase_closing_amt : 마감변동분 증가 금액 : N(17,2)
+        decrease_closing_amt : 마감변동분 감소 금액 : N(17,2)
+        after_balance_amt : 거래 후 잔액 : N(17,2)
+        currency_code : 통화코드 : A(3)
+        prod_code : 상품코드 : AN(3)
+        deposit_time_point_dscd : 예치시점구분코드 : AN(1)
+        base_date : 기준일자 : N(8)
+        rgs_mnbd_dscd : 등록주체구분 : AN(1)
+        tran_status : 거래상태(코드) : AN(2)
+
+JSON
+
+
+#1.15 거래내역 조회-015
+GET : /deposit/invr_dpsa/account/transaction_list
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    currency_code : 통화코드 : N : A(3)
+    from_date : 조회시작일자 : Y : N(8)
+    to_date : 조회종료일자 : N(8) : Y : N(8)
+    before_inquiry_trace_info : 직전조회추적정보 : N : AN(20)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    next_page_yn : 다음 페이지 존재여부 : A(1)
+    before_inquiry_trace_info : 직전조회추적정보 : AN(20)
+    total_record_cnt : 총 조회 건수 : N(18)
+    page_record_cnt : 현재 페이지 건수 : N(5)
+    transaction_list : 거래 목록 : <object>(100)
+        tran_date : 거래일자 : N(8)
+        withdrawal_amt : 출금금액 : N(17,2)
+        deposit_amt : 입금금액 : N(17,2)
+        after_balance_amt : 거래 후 잔액 : N(17,2)
+        print_content : 통장인자내용 : AH(100)
+
+JSON
+
+#1.16 이자배당내역 조회-016
+GET : /deposit/invr_dpsa/account/interest_dividend_list
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    currency_code : 통화코드 : N : A(3)
+    search_year : 조회연도 : Y : N(4)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    currency_code : 통화코드 : A(3)
+    page_record_cnt : 현재 페이지 건수 : N(5)
+    transaction_list : 거래 목록 : <object>(100)
+        tran_date : 거래일자 : 거래일자
+        int_dvd_amt : 이자배당금액 : N(17,2)
+        currency_code : 통화코드 : A(3)
+
+JSON
+
+
+#1.17 예상이자지급 조회-017
+GET : /deposit/invr_dpsa/account/estimated_interest
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    next_page_yn : 다음 페이지 존재여부 : A(1)
+    before_inquiry_trace_info : 직전조회추적정보 : AN(20)
+    total_int_amt : 이자금액 합계 : N(15)
+    int_rcv_date : 이자수령일자 : N(8)
+    page_record_cnt : 현재 페이지 건수 : N(5)
+    int_list : 이자적용목록 : <object>(100)
+        date : 일자 : N(8)
+        balance : 잔액 : N(15)
+        base_rate : 기준금리 : N(7,4)
+        int_rate : 적용이율 : N(7,4)
+        int_amt : 이자금액 : N(15)
+
+
+JSON
+
+#1.18 일별 잔고 조회-018
+GET : /deposit/invr_dpsa/account/balance_daily
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    currency_code : 통화코드 : N : A(3)
+    from_date : 조회시작일자 : Y : N(8)
+    to_date : 조회종료일자 : Y : N(8)
+    before_inquiry_trace_info : 직전조회추적정보 : N : AN(20)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    next_page_yn : 다음 페이지 존재여부 : A(1)
+    before_inquiry_trace_info : 직전조회추적정보 : AN(20)
+    currency_code : 통화코드 : A(3)
+    page_record_cnt : 현재 페이지 건수 : N(5)
+    daily_balance_list : 일별 잔액 목록 : <object>(100)
+        date : 일자 : N(8)
+        before_date_balance_amt : 전일 잔액 : N(15)
+        increase_amt : 증가 금액 : N(15)
+        decrease_amt : 감소 금액 : N(15)
+        after_balance_amt : 거래 후 잔액 : N(15)
+
+JSON
+
+
+#1.19 평잔 조회(연)-019
+GET : /deposit/invr_dpsa/account/average_balance_yearly
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    currency_code : 통화코드 : N : A(3)
+    search_year : 조회연도 : Y : N(4)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    currency_code : 통화코드 : A(3)
+    page_record_cnt : 현재 페이지 건수 : N(5)
+    average_balance_list : 평균 잔액 목록 : <object>(100)
+        search_period : 조회 기간 : AH(100)
+        average_balance : 평균 잔액 : N(17,2)
+
+JSON
+
+
+#1.20 평잔 조회(분기)-020
+GET : /deposit/invr_dpsa/account/average_balance_quarterly
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    currency_code : 통화코드 : N : A(3)
+    search_year : 조회연도 : Y : N(4)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    currency_code : 통화코드 : A(3)
+    page_record_cnt : 현재 페이지 건수 : N(5)
+    average_balance_list : 평균 잔액 목록 : <object>(100)
+        search_period : 조회 기간 : AH(100)
+        average_balance : 평균 잔액 : N(17,2)
+
+JSON
+
+
+#1.21 평잔 조회(월)-021
+GET : /deposit/invr_dpsa/account/average_balance_monthly
+REQ :
+    account_num : 계좌번호 : Y : AN(24)
+    currency_code : 통화코드 : N : A(3)
+    search_year : 조회연도 : Y : N(4)
+RES :
+    rsp_code : 응답코드 : AN(5)
+    rsp_msg : 응답 메시지 : AH(500)
+    currency_code : 통화코드 : A(3)
+    page_record_cnt : 현재 페이지 건수 : N(5)
+    average_balance_list : 평균 잔액 목록 : <object>(100)
+        search_period : 조회 기간 : AH(100)
+        average_balance : 평균 잔액 : N(17,2)
+
+JSON
+

@@ -1,0 +1,58 @@
+{
+  "code": "999",
+  "desc": "접근토큰 발급",
+  "method": "POST",
+  "url": "/oauth/2.0/token",
+  "reqFields": [
+    {
+      "fieldName": "grant_type",
+      "desc": "권한부여 방식",
+      "size": 18,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "client_id",
+      "desc": "클라이언트 ID",
+      "size": 50,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "client_secret",
+      "desc": "비밀번호(Secret)",
+      "size": 50,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "scope",
+      "desc": "권한 범위",
+      "size": 6,
+      "type": "STRING"
+    }
+  ],
+  "resFields": [
+    {
+      "fieldName": "token_type",
+      "desc": "접근토큰 유형",
+      "size": 6,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "access_token",
+      "desc": "접근토큰",
+      "size": 1500,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "expires_in",
+      "desc": "접근토큰 유효기간",
+      "size": 9,
+      "type": "LONG"
+    },
+    {
+      "fieldName": "scope",
+      "desc": "권한 범위",
+      "size": 6,
+      "type": "STRING"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "rsp_code": "CODE",
+  "rsp_msg": "응답메시지입니다.",
+  "next_page_yn": "Y",
+  "before_inquiry_trace_info": "AA11AA11",
+  "page_record_cnt": 2,
+  "transaction_list": [
+    {
+      "tran_idn_num": "BBBB1111",
+      "account_num": "CCCC2222",
+      "increase_closing_amt": 20000.12,
+      "decrease_closing_amt": 1000.12,
+      "after_balance_amt": 19000,
+      "currency_code": "CO",
+      "prod_code": "CD",
+      "deposit_time_point_dscd": "X",
+      "base_date": 20220818,
+      "rgs_mnbd_dscd": "D",
+      "tran_status": "A1"
+    }
+  ]
+}

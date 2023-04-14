@@ -1,0 +1,10 @@
+{
+  "trx_len": "12345",
+  "trx_code": "000",
+  "trx_gubun": "RES",
+  "send_dt": "yyyyMMddHHmmss",
+  "recv_dt": "yyyyMMddHHmmss",
+  "unique_code": "ABCDEFGHIJ0123456789",
+  "ret_code": "000",
+  "reserved": "123"
+}

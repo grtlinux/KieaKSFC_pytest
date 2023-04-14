@@ -1,0 +1,12 @@
+{
+  "rsp_code": "CODE",
+  "rsp_msg": "응답메시지입니다",
+  "currency_code": "AB",
+  "page_record_cnt": 2,
+  "average_balance_list": [
+    {
+      "search_period": "20220809~20221212",
+      "average_balance": 300000.12
+    }
+  ]
+}

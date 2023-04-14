@@ -1,0 +1,165 @@
+{
+  "code": "008",
+  "desc": "수시입출금 신청정보 상세조회",
+  "method": "GET",
+  "url": "/deposit/invr_dpsa/transfer/detail",
+  "reqFields": [
+    {
+      "fieldName": "account_num",
+      "desc": "계좌번호",
+      "size": 24,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "tran_date",
+      "desc": "거래일자",
+      "size": 8,
+      "type": "LONG"
+    },
+    {
+      "fieldName": "tran_idn_num",
+      "desc": "거래식별번호",
+      "size": 8,
+      "type": "STRING"
+    }
+  ],
+  "resFields": [
+    {
+      "fieldName": "rsp_code",
+      "desc": "응답코드",
+      "size": 5,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "rsp_msg",
+      "desc": "응답 메시지",
+      "size": 500,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "withdraw_tran_amt",
+      "desc": "출금거래금액",
+      "size": 17,
+      "type": "DOUBLE",
+      "precision": 2
+    },
+    {
+      "fieldName": "deposit_tran_amt",
+      "desc": "입금거래금액",
+      "size": 17,
+      "type": "DOUBLE",
+      "precision": 2
+    },
+    {
+      "fieldName": "currency_code",
+      "desc": "통화코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "prod_code",
+      "desc": "상품코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "tran_status",
+      "desc": "거래상태(코드)",
+      "size": 2,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "withdraw_reason_code",
+      "desc": "인출사유 코드",
+      "size": 2,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "settlement_info_cnt",
+      "desc": "결제정보 건수",
+      "size": 5,
+      "type": "ARRCOUNT"
+    },
+    {
+      "fieldName": "settlement_info",
+      "desc": "결제정보",
+      "type": "ARROBJECT",
+      "arrMax": 5,
+      "arrFields": [
+        {
+          "fieldName": "bank_code",
+          "desc": "금융기관코드",
+          "size": 3,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "bank_name",
+          "desc": "금융기관명",
+          "size": 100,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "settlement_account_num",
+          "desc": "결제 계좌번호",
+          "size": 24,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "settlement_amt",
+          "desc": "결제금액",
+          "size": 17,
+          "type": "DOUBLE",
+          "precision": 2
+        }
+      ]
+    },
+    {
+      "fieldName": "optr_email_yn",
+      "desc": "조작자 이메일 동의여부",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "optr_email_address",
+      "desc": "조작자 이메일 주소",
+      "size": 200,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "apvr_email_yn",
+      "desc": "승인자 이메일 동의여부",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "apvr_email_address",
+      "desc": "승인자 이메일 주소",
+      "size": 200,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "optr_sms_yn",
+      "desc": "조작자 SMS 동의 여부",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "optr_mobile_num",
+      "desc": "조작자 휴대전화 번호",
+      "size": 20,
+      "type": "LONG"
+    },
+    {
+      "fieldName": "apvr_sms_yn",
+      "desc": "승인자 SMS 동의 여부",
+      "size": 1,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "apvr_mobile_num",
+      "desc": "승인자 휴대전화 번호",
+      "size": 20,
+      "type": "LONG"
+    }
+  ]
+}

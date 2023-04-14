@@ -1,0 +1,41 @@
+{
+  "account_num": "BBBB2222",
+  "base_date": 970328,
+  "increase_closing_amt": 123,
+  "decrease_closing_amt": 123,
+  "withdraw_reason": "A1",
+  "settlement_info_cnt": 2,
+  "settlement_info": [
+    {
+      "bank_code": "A1",
+      "settlement_account_num": "AAA1111",
+      "settlement_amt": 212
+    }
+  ],
+  "next_tran_date_rffp_req_amt": 1223,
+  "settlement_info_rffp_cnt": 2,
+  "settlement_info_rffp": [
+    {
+      "bank_code": "A1",
+      "settlement_account_num": "FVVV2222",
+      "settlement_amt": 123
+    }
+  ],
+  "consignment_guarantee": 232,
+  "deposit_requirement_change_details_cnt": 2,
+  "deposit_requirement_change_details": [
+    {
+      "deposit_requirement_type": "A1",
+      "increase_amt": 2112,
+      "decrease_amt": 211
+    }
+  ],
+  "optr_email_yn": "Y",
+  "optr_email_address": "qwer@naver.com",
+  "apvr_email_yn": "Y",
+  "apvr_email_address": "asdf@naver.com",
+  "optr_sms_yn": "Y",
+  "optr_mobile_num": 1010101010,
+  "apvr_sms_yn": "Y",
+  "apvr_mobile_num": 1010101010
+}

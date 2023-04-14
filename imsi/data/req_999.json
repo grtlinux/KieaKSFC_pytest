@@ -1,0 +1,6 @@
+{
+  "grant_type": "AAAA1111",
+  "client_id": "aBc123",
+  "client_secret": "abC123",
+  "scope": "abc"
+}

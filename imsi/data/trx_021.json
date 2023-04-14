@@ -1,0 +1,73 @@
+{
+  "code": "021",
+  "desc": "평잔 조회(월)",
+  "method": "GET",
+  "url": "/deposit/invr_dpsa/account/average_balance_monthly",
+  "reqFields": [
+    {
+      "fieldName": "account_num",
+      "desc": "계좌번호",
+      "size": 24,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "currency_code",
+      "desc": "통화코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "search_year",
+      "desc": "조회연도",
+      "size": 4,
+      "type": "LONG"
+    }
+  ],
+  "resFields": [
+    {
+      "fieldName": "rsp_code",
+      "desc": "응답코드",
+      "size": 5,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "rsp_msg",
+      "desc": "응답 메시지",
+      "size": 500,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "currency_code",
+      "desc": "통화코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "page_record_cnt",
+      "desc": "현재 페이지 건수",
+      "size": 5,
+      "type": "ARRCOUNT"
+    },
+    {
+      "fieldName": "average_balance_list",
+      "desc": "평균 잔액 목록",
+      "type": "ARROBJECT",
+      "arrMax": 100,
+      "arrFields": [
+        {
+          "fieldName": "search_period",
+          "desc": "조회 기간",
+          "size": 100,
+          "type": "STRING"
+        },
+        {
+          "fieldName": "average_balance",
+          "desc": "평균 잔액",
+          "size": 17,
+          "type": "DOUBLE",
+          "precision": 2
+        }
+      ]
+    }
+  ]
+}

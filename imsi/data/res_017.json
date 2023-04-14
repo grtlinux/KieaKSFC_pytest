@@ -1,0 +1,18 @@
+{
+  "rsp_code": "CODE",
+  "rsp_msg": "응답메시지입니다.",
+  "next_page_yn": "Y",
+  "before_inquiry_trace_info": "AAABBB111222",
+  "total_int_amt": 40000,
+  "int_rcv_date": 20220901,
+  "page_record_cnt": 2,
+  "int_list": [
+    {
+      "date": 20220818,
+      "balance": 300000,
+      "base_rate": 200.1234,
+      "int_rate": 300.1234,
+      "int_amt": 40000
+    }
+  ]
+}

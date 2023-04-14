@@ -1,0 +1,20 @@
+{
+  "rsp_code": "CODE",
+  "rsp_msg": "응답메시지입니다",
+  "next_page_yn": "Y",
+  "before_inquiry_trace_info": "AAA1234",
+  "page_record_cnt": 2,
+  "transaction_list": [
+    {
+      "tran_idn_num": "BB111",
+      "account_num": "ABCD1234",
+      "tran_amt": 15000.12,
+      "currency_code": "BC",
+      "deposit_withdraw_dscd": "B",
+      "prod_code": "AA",
+      "dps_mth_dscd": "A",
+      "rgs_mnbd_dscd": "B",
+      "tran_status": "C"
+    }
+  ]
+}

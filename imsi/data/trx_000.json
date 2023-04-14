@@ -1,0 +1,104 @@
+{
+  "code": "000",
+  "desc": "Header",
+  "reqFields": [
+    {
+      "fieldName": "trx_len",
+      "desc": "전문길이(trx_len뺀)",
+      "size": 5,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "trx_code",
+      "desc": "전문 코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "trx_gubun",
+      "desc": "전문 구분(REQ/RES)",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "send_dt",
+      "desc": "송신일시",
+      "size": 14,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "recv_dt",
+      "desc": "수신일시",
+      "size": 14,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "unique_code",
+      "desc": "유일키 코드",
+      "size": 20,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "ret_code",
+      "desc": "응답 결과코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "reserved",
+      "desc": "예비공간",
+      "size": 3,
+      "type": "STRING"
+    }
+  ],
+  "resFields": [
+    {
+      "fieldName": "trx_len",
+      "desc": "전문길이(trx_len뺀)",
+      "size": 5,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "trx_code",
+      "desc": "전문 코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "trx_gubun",
+      "desc": "전문 구분(REQ/RES)",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "send_dt",
+      "desc": "송신일시",
+      "size": 14,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "recv_dt",
+      "desc": "수신일시",
+      "size": 14,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "unique_code",
+      "desc": "유일키 코드",
+      "size": 20,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "ret_code",
+      "desc": "응답 결과코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "reserved",
+      "desc": "예비공간",
+      "size": 3,
+      "type": "STRING"
+    }
+  ]
+}

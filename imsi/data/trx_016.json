@@ -1,0 +1,79 @@
+{
+  "code": "016",
+  "desc": "이자배당내역 조회",
+  "method": "GET",
+  "url": "/deposit/invr_dpsa/account/interest_dividend_list",
+  "reqFields": [
+    {
+      "fieldName": "account_num",
+      "desc": "계좌번호",
+      "size": 24,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "currency_code",
+      "desc": "통화코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "search_year",
+      "desc": "조회연도",
+      "size": 4,
+      "type": "LONG"
+    }
+  ],
+  "resFields": [
+    {
+      "fieldName": "rsp_code",
+      "desc": "응답코드",
+      "size": 5,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "rsp_msg",
+      "desc": "응답 메시지",
+      "size": 500,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "currency_code",
+      "desc": "통화코드",
+      "size": 3,
+      "type": "STRING"
+    },
+    {
+      "fieldName": "page_record_cnt",
+      "desc": "현재 페이지 건수",
+      "size": 5,
+      "type": "ARRCOUNT"
+    },
+    {
+      "fieldName": "transaction_list",
+      "desc": "거래 목록",
+      "type": "ARROBJECT",
+      "arrMax": 100,
+      "arrFields": [
+        {
+          "fieldName": "tran_date",
+          "desc": "거래일자",
+          "size": 8,
+          "type": "LONG"
+        },
+        {
+          "fieldName": "int_dvd_amt",
+          "desc": "이자배당금액",
+          "size": 17,
+          "type": "DOUBLE",
+          "precision": 2
+        },
+        {
+          "fieldName": "currency_code",
+          "desc": "통화코드",
+          "size": 3,
+          "type": "STRING"
+        }
+      ]
+    }
+  ]
+}
