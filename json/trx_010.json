@@ -1,0 +1,591 @@
+{
+    "code": "010",
+    "name": "계좌 기본정보 조회(마감변동분, 지불준비금)",
+    "method": "GET",
+    "version": "/v1",
+    "path": "/deposit/invr_dpsa/account/closing_and_reserve_for_payment",
+    "reqFields": [
+        {
+            "fieldName": "tran_date",
+            "desc": "거래일자",
+            "required": "Y",
+            "typeInfo": "N(8)",
+            "testValue": "970328",
+            "size": 8,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "account_num",
+            "desc": "계좌번호",
+            "required": "Y",
+            "typeInfo": "AN(24)",
+            "testValue": "AAAA1111",
+            "size": 24,
+            "precision": 0,
+            "type": "STRING"
+        }
+    ],
+    "resFields": [
+        {
+            "fieldName": "rsp_code",
+            "desc": "응답코드",
+            "required": "Y",
+            "typeInfo": "AN(5)",
+            "testValue": "CODE",
+            "size": 5,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "rsp_msg",
+            "desc": "응답 메시지",
+            "required": "Y",
+            "typeInfo": "AH(500)",
+            "testValue": "응답메시지입니다",
+            "size": 500,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "tran_idn_num",
+            "desc": "거래식별번호",
+            "required": "Y",
+            "typeInfo": "AN(8)",
+            "testValue": "ABC123",
+            "size": 8,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "base_date",
+            "desc": "기준일자",
+            "required": "Y",
+            "typeInfo": "N(8)",
+            "testValue": "20220818",
+            "size": 8,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "tran_status",
+            "desc": "거래상태(코드)",
+            "required": "Y",
+            "typeInfo": "AN(2)",
+            "testValue": "B1",
+            "size": 2,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "before_date_balance_amt",
+            "desc": "전일 잔액",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "30000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "increase_amt",
+            "desc": "증가 금액",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "2000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "decrease_amt",
+            "desc": "감소 금액",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "2000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "after_balance_amt",
+            "desc": "거래 후 잔액",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "25000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "int_dvd_amt",
+            "desc": "이자배당금액",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "1000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "tran_date_rffp_req_amt",
+            "desc": "거래일자 지불준비금 신청금액",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "10000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "specified_money_in_trust",
+            "desc": "특정금전신탁금액",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "50000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "withdraw_tran_amt",
+            "desc": "출금거래금액(당일 마감변동분)",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "20000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "deposit_tran_amt",
+            "desc": "입금거래금액(당일 마감변동분)",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "20000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "withdraw_reason_cnt",
+            "desc": "인출사유 건수",
+            "required": "Y",
+            "typeInfo": "N(5)",
+            "testValue": "2",
+            "size": 5,
+            "precision": 0,
+            "type": "ARRCNT"
+        },
+        {
+            "fieldName": "withdraw_reason_list",
+            "desc": "인출사유 목록",
+            "type": "ARROBJ",
+            "arrMax": 30,
+            "arrFields": [
+                {
+                    "fieldName": "withdraw_reason_code",
+                    "desc": "인출사유 코드",
+                    "required": "Y",
+                    "typeInfo": "AN(2)",
+                    "testValue": "B2",
+                    "size": 2,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "withdraw_reason_name",
+                    "desc": "인출사유명",
+                    "required": "Y",
+                    "typeInfo": "AH(100)",
+                    "testValue": "그냥",
+                    "size": 100,
+                    "precision": 0,
+                    "type": "STRING"
+                }
+            ]
+        },
+        {
+            "fieldName": "settlement_info_withdraw_cnt",
+            "desc": "출금 결제정보 건수",
+            "required": "Y",
+            "typeInfo": "N(5)",
+            "testValue": "2",
+            "size": 5,
+            "precision": 0,
+            "type": "ARRCNT"
+        },
+        {
+            "fieldName": "settlement_info_withdraw",
+            "desc": "출금 결제정보",
+            "type": "ARROBJ",
+            "arrMax": 5,
+            "arrFields": [
+                {
+                    "fieldName": "bank_code",
+                    "desc": "금융기관코드",
+                    "required": "Y",
+                    "typeInfo": "AN(3)",
+                    "testValue": "AB",
+                    "size": 3,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "bank_name",
+                    "desc": "금융기관명",
+                    "required": "Y",
+                    "typeInfo": "AH(100)",
+                    "testValue": "신한",
+                    "size": 100,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "settlement_account_num",
+                    "desc": "결제 계좌번호",
+                    "required": "Y",
+                    "typeInfo": "AN(24)",
+                    "testValue": "ABCD1234",
+                    "size": 24,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "settlement_amt",
+                    "desc": "결제금액",
+                    "required": "Y",
+                    "typeInfo": "N(17,2)",
+                    "testValue": "50000",
+                    "size": 17,
+                    "precision": 2,
+                    "type": "NUMDBL"
+                },
+                {
+                    "fieldName": "is_main_account",
+                    "desc": "주거래 계좌여부",
+                    "required": "Y",
+                    "typeInfo": "A(1)",
+                    "testValue": "Y",
+                    "size": 1,
+                    "precision": 0,
+                    "type": "STRING"
+                }
+            ]
+        },
+        {
+            "fieldName": "settlement_info_deposit_cnt",
+            "desc": "입금 결제정보 건수",
+            "required": "Y",
+            "typeInfo": "N(5)",
+            "testValue": "2",
+            "size": 5,
+            "precision": 0,
+            "type": "ARRCNT"
+        },
+        {
+            "fieldName": "settlement_info_deposit",
+            "desc": "입금 결제정보",
+            "type": "ARROBJ",
+            "arrMax": 5,
+            "arrFields": [
+                {
+                    "fieldName": "bank_code",
+                    "desc": "금융기관코드",
+                    "required": "Y",
+                    "typeInfo": "AN(3)",
+                    "testValue": "AB",
+                    "size": 3,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "bank_name",
+                    "desc": "금융기관명",
+                    "required": "Y",
+                    "typeInfo": "AH(100)",
+                    "testValue": "신한",
+                    "size": 100,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "settlement_account_num",
+                    "desc": "결제 계좌번호",
+                    "required": "Y",
+                    "typeInfo": "AN(24)",
+                    "testValue": "ABCD1234",
+                    "size": 24,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "settlement_amt",
+                    "desc": "결제금액",
+                    "required": "Y",
+                    "typeInfo": "N(17,2)",
+                    "testValue": "30000.12",
+                    "size": 17,
+                    "precision": 2,
+                    "type": "NUMDBL"
+                },
+                {
+                    "fieldName": "is_main_account",
+                    "desc": "주거래 계좌여부",
+                    "required": "Y",
+                    "typeInfo": "A(1)",
+                    "testValue": "Y",
+                    "size": 1,
+                    "precision": 0,
+                    "type": "STRING"
+                }
+            ]
+        },
+        {
+            "fieldName": "next_tran_date_rffp_req_possible_amt",
+            "desc": "익영업일 지불준비금 신청 가능 금액",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "30000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "next_tran_date_rffp_req_amt",
+            "desc": "익영업일 지불준비금 신청금액",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "1000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "settlement_info_rffp_cnt",
+            "desc": "지불준비금 결제정보 건수",
+            "required": "Y",
+            "typeInfo": "N(5)",
+            "testValue": "2",
+            "size": 5,
+            "precision": 0,
+            "type": "ARRCNT"
+        },
+        {
+            "fieldName": "settlement_info_rffp",
+            "desc": "지불준비금 결제정보",
+            "type": "ARROBJ",
+            "arrMax": 2,
+            "arrFields": [
+                {
+                    "fieldName": "bank_code",
+                    "desc": "금융기관코드",
+                    "required": "Y",
+                    "typeInfo": "AN(3)",
+                    "testValue": "AB",
+                    "size": 3,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "bank_name",
+                    "desc": "금융기관명",
+                    "required": "Y",
+                    "typeInfo": "AH(100)",
+                    "testValue": "신한",
+                    "size": 100,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "settlement_account_num",
+                    "desc": "결제 계좌번호",
+                    "required": "Y",
+                    "typeInfo": "AN(24)",
+                    "testValue": "BBBB1111",
+                    "size": 24,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "settlement_amt",
+                    "desc": "결제금액",
+                    "required": "Y",
+                    "typeInfo": "N(15)",
+                    "testValue": "2000",
+                    "size": 15,
+                    "precision": 0,
+                    "type": "NUMBER"
+                },
+                {
+                    "fieldName": "is_main_account",
+                    "desc": "주거래 계좌여부",
+                    "required": "Y",
+                    "typeInfo": "A(1)",
+                    "testValue": "Y",
+                    "size": 1,
+                    "precision": 0,
+                    "type": "STRING"
+                }
+            ]
+        },
+        {
+            "fieldName": "consignment_guarantee",
+            "desc": "현금위탁증거금",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "1000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "deposit_requirement_change_details_cnt",
+            "desc": "의무예치금 변동내역 건수",
+            "required": "Y",
+            "typeInfo": "N(5)",
+            "testValue": "2",
+            "size": 5,
+            "precision": 0,
+            "type": "ARRCNT"
+        },
+        {
+            "fieldName": "deposit_requirement_change_details",
+            "desc": "의무예치금 변동내역",
+            "type": "ARROBJ",
+            "arrMax": 6,
+            "arrFields": [
+                {
+                    "fieldName": "deposit_requirement_type",
+                    "desc": "의무예치금 종류",
+                    "required": "Y",
+                    "typeInfo": "AN(2)",
+                    "testValue": "A1",
+                    "size": 2,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "before_date_balance_amt",
+                    "desc": "전일 잔액",
+                    "required": "Y",
+                    "typeInfo": "N(15)",
+                    "testValue": "40000",
+                    "size": 15,
+                    "precision": 0,
+                    "type": "NUMBER"
+                },
+                {
+                    "fieldName": "increase_amt",
+                    "desc": "증가 금액",
+                    "required": "Y",
+                    "typeInfo": "N(15)",
+                    "testValue": "2000",
+                    "size": 15,
+                    "precision": 0,
+                    "type": "NUMBER"
+                },
+                {
+                    "fieldName": "decrease_amt",
+                    "desc": "감소 금액",
+                    "required": "Y",
+                    "typeInfo": "N(15)",
+                    "testValue": "2000",
+                    "size": 15,
+                    "precision": 0,
+                    "type": "NUMBER"
+                },
+                {
+                    "fieldName": "base_date_balance_amt",
+                    "desc": "기준일 잔액",
+                    "required": "Y",
+                    "typeInfo": "N(15)",
+                    "testValue": "38000",
+                    "size": 15,
+                    "precision": 0,
+                    "type": "NUMBER"
+                }
+            ]
+        },
+        {
+            "fieldName": "optr_email_yn",
+            "desc": "조작자 이메일 동의여부",
+            "required": "Y",
+            "typeInfo": "A(1)",
+            "testValue": "Y",
+            "size": 1,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "optr_email_address",
+            "desc": "조작자 이메일 주소",
+            "required": "Y",
+            "typeInfo": "E(200)",
+            "testValue": "4455qqq@naver.com",
+            "size": 200,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "apvr_email_yn",
+            "desc": "승인자 이메일 동의여부",
+            "required": "Y",
+            "typeInfo": "A(1)",
+            "testValue": "Y",
+            "size": 1,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "apvr_email_address",
+            "desc": "승인자 이메일 주소",
+            "required": "Y",
+            "typeInfo": "E(200)",
+            "testValue": "gksruf2848@naver.com",
+            "size": 200,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "optr_sms_yn",
+            "desc": "조작자 SMS 동의 여부",
+            "required": "Y",
+            "typeInfo": "A(1)",
+            "testValue": "Y",
+            "size": 1,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "optr_mobile_num",
+            "desc": "조작자 휴대전화 번호",
+            "required": "Y",
+            "typeInfo": "N(20)",
+            "testValue": "01054149634",
+            "size": 20,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "apvr_sms_yn",
+            "desc": "승인자 SMS 동의 여부",
+            "required": "Y",
+            "typeInfo": "A(1)",
+            "testValue": "Y",
+            "size": 1,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "apvr_mobile_num",
+            "desc": "승인자 휴대전화 번호",
+            "required": "Y",
+            "typeInfo": "N(20)",
+            "testValue": "01058446024",
+            "size": 20,
+            "precision": 0,
+            "type": "NUMBER"
+        }
+    ]
+}

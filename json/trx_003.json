@@ -1,0 +1,333 @@
+{
+    "code": "003",
+    "name": "계좌 기본정보 조회(수시입출금)",
+    "method": "GET",
+    "version": "/v1",
+    "path": "/deposit/invr_dpsa/account/on_demand",
+    "reqFields": [
+        {
+            "fieldName": "account_num",
+            "desc": "계좌번호",
+            "required": "Y",
+            "typeInfo": "AN(24)",
+            "testValue": "AAAA1111",
+            "size": 24,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "currency_code",
+            "desc": "통화코드",
+            "required": "N",
+            "typeInfo": "A(3)",
+            "testValue": "USD",
+            "size": 3,
+            "precision": 0,
+            "type": "STRING"
+        }
+    ],
+    "resFields": [
+        {
+            "fieldName": "rsp_code",
+            "desc": "응답코드",
+            "required": "Y",
+            "typeInfo": "AN(5)",
+            "testValue": "CODE",
+            "size": 5,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "rsp_msg",
+            "desc": "응답 메시지",
+            "required": "Y",
+            "typeInfo": "AH(500)",
+            "testValue": "응답 메시지입니다.",
+            "size": 500,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "currency_code",
+            "desc": "통화코드",
+            "required": "Y",
+            "typeInfo": "A(3)",
+            "testValue": "USD",
+            "size": 3,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "before_date_balance_amt",
+            "desc": "전일 잔액",
+            "required": "Y",
+            "typeInfo": "N(17,2)",
+            "testValue": "10000.00",
+            "size": 17,
+            "precision": 2,
+            "type": "NUMDBL"
+        },
+        {
+            "fieldName": "balance_amt",
+            "desc": "현재 잔액",
+            "required": "Y",
+            "typeInfo": "N(17,2)",
+            "testValue": "20000.00",
+            "size": 17,
+            "precision": 2,
+            "type": "NUMDBL"
+        },
+        {
+            "fieldName": "excess_balance",
+            "desc": "초과예치금",
+            "required": "Y",
+            "typeInfo": "N(17,2)",
+            "testValue": "10000.00",
+            "size": 17,
+            "precision": 2,
+            "type": "NUMDBL"
+        },
+        {
+            "fieldName": "rffp_settlement_possible_amt",
+            "desc": "지불준비금가능금액",
+            "required": "Y",
+            "typeInfo": "N(17,2)",
+            "testValue": "5000.00",
+            "size": 17,
+            "precision": 2,
+            "type": "NUMDBL"
+        },
+        {
+            "fieldName": "settlement_info_withdraw_cnt",
+            "desc": "출금 결제정보 건수",
+            "required": "Y",
+            "typeInfo": "N(5)",
+            "testValue": "3",
+            "size": 5,
+            "precision": 0,
+            "type": "ARRCNT"
+        },
+        {
+            "fieldName": "settlement_info_withdraw",
+            "desc": "출금 결제정보",
+            "type": "ARROBJ",
+            "arrMax": 5,
+            "arrFields": [
+                {
+                    "fieldName": "bank_code",
+                    "desc": "금융기관코드",
+                    "required": "Y",
+                    "typeInfo": "AN(3)",
+                    "testValue": "123",
+                    "size": 3,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "bank_name",
+                    "desc": "금융기관명",
+                    "required": "Y",
+                    "typeInfo": "AH(100)",
+                    "testValue": "신한",
+                    "size": 100,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "settlement_account_num",
+                    "desc": "결제 계좌번호",
+                    "required": "Y",
+                    "typeInfo": "AN(24)",
+                    "testValue": "ABC1234",
+                    "size": 24,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "is_main_account",
+                    "desc": "주거래 계좌여부",
+                    "required": "Y",
+                    "typeInfo": "A(1)",
+                    "testValue": "Y",
+                    "size": 1,
+                    "precision": 0,
+                    "type": "STRING"
+                }
+            ]
+        },
+        {
+            "fieldName": "settlement_info_deposit_cnt",
+            "desc": "입금 결제정보 건수",
+            "required": "Y",
+            "typeInfo": "N(5)",
+            "testValue": "4",
+            "size": 5,
+            "precision": 0,
+            "type": "ARRCNT"
+        },
+        {
+            "fieldName": "settlement_info_deposit",
+            "desc": "입금 결제정보",
+            "type": "ARROBJ",
+            "arrMax": 5,
+            "arrFields": [
+                {
+                    "fieldName": "bank_code",
+                    "desc": "금융기관코드",
+                    "required": "Y",
+                    "typeInfo": "AN(3)",
+                    "testValue": "123",
+                    "size": 3,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "bank_name",
+                    "desc": "금융기관명",
+                    "required": "Y",
+                    "typeInfo": "AH(100)",
+                    "testValue": "농협",
+                    "size": 100,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "settlement_account_num",
+                    "desc": "결제 계좌번호",
+                    "required": "Y",
+                    "typeInfo": "AN(24)",
+                    "testValue": "BBB1234",
+                    "size": 24,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "is_main_account",
+                    "desc": "주거래 계좌여부",
+                    "required": "Y",
+                    "typeInfo": "A(1)",
+                    "testValue": "N",
+                    "size": 1,
+                    "precision": 0,
+                    "type": "STRING"
+                }
+            ]
+        },
+        {
+            "fieldName": "withdraw_reason_cnt",
+            "desc": "인출사유 건수",
+            "required": "Y",
+            "typeInfo": "N(5)",
+            "testValue": "20",
+            "size": 5,
+            "precision": 0,
+            "type": "ARRCNT"
+        },
+        {
+            "fieldName": "withdraw_reason_list",
+            "desc": "인출사유 목록",
+            "type": "ARROBJ",
+            "arrMax": 30,
+            "arrFields": [
+                {
+                    "fieldName": "withdraw_reason_code",
+                    "desc": "인출사유 코드",
+                    "required": "Y",
+                    "typeInfo": "AN(2)",
+                    "testValue": "10",
+                    "size": 2,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "withdraw_reason_name",
+                    "desc": "인출사유명",
+                    "required": "Y",
+                    "typeInfo": "AH(100)",
+                    "testValue": "그냥",
+                    "size": 100,
+                    "precision": 0,
+                    "type": "STRING"
+                }
+            ]
+        },
+        {
+            "fieldName": "consignment_guarantee",
+            "desc": "현금위탁증거금",
+            "required": "Y",
+            "typeInfo": "N(17,2)",
+            "testValue": "30000",
+            "size": 17,
+            "precision": 2,
+            "type": "NUMDBL"
+        },
+        {
+            "fieldName": "deposit_requirement_change_details_cnt",
+            "desc": "의무예치금 변동내역 건수",
+            "required": "Y",
+            "typeInfo": "N(5)",
+            "testValue": "5",
+            "size": 5,
+            "precision": 0,
+            "type": "ARRCNT"
+        },
+        {
+            "fieldName": "deposit_requirement_change_details",
+            "desc": "의무예치금 변동내역",
+            "type": "ARROBJ",
+            "arrMax": 6,
+            "arrFields": [
+                {
+                    "fieldName": "deposit_requirement_type",
+                    "desc": "의무예치금 종류",
+                    "required": "Y",
+                    "typeInfo": "AN(2)",
+                    "testValue": "AA",
+                    "size": 2,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "before_date_balance_amt",
+                    "desc": "전일 잔액",
+                    "required": "Y",
+                    "typeInfo": "N(17,2)",
+                    "testValue": "20000.12",
+                    "size": 17,
+                    "precision": 2,
+                    "type": "NUMDBL"
+                },
+                {
+                    "fieldName": "increase_amt",
+                    "desc": "증가 금액",
+                    "required": "Y",
+                    "typeInfo": "N(17,2)",
+                    "testValue": "5000.12",
+                    "size": 17,
+                    "precision": 2,
+                    "type": "NUMDBL"
+                },
+                {
+                    "fieldName": "decrease_amt",
+                    "desc": "감소 금액",
+                    "required": "Y",
+                    "typeInfo": "N(17,2)",
+                    "testValue": "2000.12",
+                    "size": 17,
+                    "precision": 2,
+                    "type": "NUMDBL"
+                },
+                {
+                    "fieldName": "base_date_balance_amt",
+                    "desc": "기준일 잔액",
+                    "required": "Y",
+                    "typeInfo": "N(17,2)",
+                    "testValue": "23000",
+                    "size": 17,
+                    "precision": 2,
+                    "type": "NUMDBL"
+                }
+            ]
+        }
+    ]
+}

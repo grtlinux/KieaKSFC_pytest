@@ -1,0 +1,129 @@
+{
+    "code": "017",
+    "name": "예상이자지급 조회",
+    "method": "GET",
+    "version": "/v1",
+    "path": "/deposit/invr_dpsa/account/estimated_interest",
+    "reqFields": [
+        {
+            "fieldName": "account_num",
+            "desc": "계좌번호",
+            "required": "Y",
+            "typeInfo": "AN(24)",
+            "testValue": "AFAF1231",
+            "size": 24,
+            "precision": 0,
+            "type": "STRING"
+        }
+    ],
+    "resFields": [
+        {
+            "fieldName": "rsp_code",
+            "desc": "응답코드",
+            "required": "Y",
+            "typeInfo": "AN(5)",
+            "testValue": "CODE",
+            "size": 5,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "rsp_msg",
+            "desc": "응답 메시지",
+            "required": "Y",
+            "typeInfo": "AH(500)",
+            "testValue": "응답메시지입니다.",
+            "size": 500,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "total_int_amt",
+            "desc": "이자금액 합계",
+            "required": "Y",
+            "typeInfo": "N(15)",
+            "testValue": "40000",
+            "size": 15,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "int_rcv_date",
+            "desc": "이자수령일자",
+            "required": "Y",
+            "typeInfo": "N(8)",
+            "testValue": "20220901",
+            "size": 8,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "page_record_cnt",
+            "desc": "현재 페이지 건수",
+            "required": "Y",
+            "typeInfo": "N(5)",
+            "testValue": "2",
+            "size": 5,
+            "precision": 0,
+            "type": "ARRCNT"
+        },
+        {
+            "fieldName": "int_list",
+            "desc": "이자적용목록",
+            "type": "ARROBJ",
+            "arrMax": 100,
+            "arrFields": [
+                {
+                    "fieldName": "date",
+                    "desc": "일자",
+                    "required": "Y",
+                    "typeInfo": "N(8)",
+                    "testValue": "20220818",
+                    "size": 8,
+                    "precision": 0,
+                    "type": "NUMBER"
+                },
+                {
+                    "fieldName": "balance",
+                    "desc": "잔액",
+                    "required": "Y",
+                    "typeInfo": "N(15)",
+                    "testValue": "300000",
+                    "size": 15,
+                    "precision": 0,
+                    "type": "NUMBER"
+                },
+                {
+                    "fieldName": "base_rate",
+                    "desc": "기준금리",
+                    "required": "Y",
+                    "typeInfo": "N(7,4)",
+                    "testValue": "200.1234",
+                    "size": 7,
+                    "precision": 4,
+                    "type": "NUMDBL"
+                },
+                {
+                    "fieldName": "int_rate",
+                    "desc": "적용이율",
+                    "required": "Y",
+                    "typeInfo": "N(7,4)",
+                    "testValue": "300.1234",
+                    "size": 7,
+                    "precision": 4,
+                    "type": "NUMDBL"
+                },
+                {
+                    "fieldName": "int_amt",
+                    "desc": "이자금액",
+                    "required": "Y",
+                    "typeInfo": "N(15)",
+                    "testValue": "40000",
+                    "size": 15,
+                    "precision": 0,
+                    "type": "NUMBER"
+                }
+            ]
+        }
+    ]
+}

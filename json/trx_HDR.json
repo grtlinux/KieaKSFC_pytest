@@ -1,0 +1,68 @@
+{
+    "code": "HDR",
+    "name": "Header",
+    "reqFields": [
+        {
+            "fieldName": "trx_code",
+            "desc": "전문 코드",
+            "required": "Y",
+            "typeInfo": "aN(3)",
+            "testValue": "000",
+            "size": 3,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "trx_reqres",
+            "desc": "전문 구분(REQ/RES)",
+            "required": "Y",
+            "typeInfo": "aN(3)",
+            "testValue": "REQ",
+            "size": 3,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "reserved",
+            "desc": "예비공간",
+            "required": "Y",
+            "typeInfo": "aN(94)",
+            "testValue": "",
+            "size": 94,
+            "precision": 0,
+            "type": "STRING"
+        }
+    ],
+    "resFields": [
+        {
+            "fieldName": "trx_code",
+            "desc": "전문 코드",
+            "required": "Y",
+            "typeInfo": "aN(3)",
+            "testValue": "000",
+            "size": 3,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "trx_reqres",
+            "desc": "전문 구분(REQ/RES)",
+            "required": "Y",
+            "typeInfo": "aN(3)",
+            "testValue": "RES",
+            "size": 3,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "reserved",
+            "desc": "예비공간",
+            "required": "Y",
+            "typeInfo": "aN(94)",
+            "testValue": "",
+            "size": 94,
+            "precision": 0,
+            "type": "STRING"
+        }
+    ]
+}

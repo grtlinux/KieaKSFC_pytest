@@ -1,0 +1,239 @@
+{
+    "code": "014",
+    "name": "마감변동분 신청내역 조회",
+    "method": "GET",
+    "version": "/v1",
+    "path": "/deposit/invr_dpsa/transfer/closing_transaction_list",
+    "reqFields": [
+        {
+            "fieldName": "tran_date",
+            "desc": "거래일자",
+            "required": "Y",
+            "typeInfo": "N(8)",
+            "testValue": "970328",
+            "size": 8,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "search_type",
+            "desc": "조회 구분 코드",
+            "required": "Y",
+            "typeInfo": "AN(1)",
+            "testValue": "C",
+            "size": 1,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "dps_mth_dscd",
+            "desc": "예치방법구분",
+            "required": "Y",
+            "typeInfo": "AN(1)",
+            "testValue": "A",
+            "size": 1,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "prod_code",
+            "desc": "상품코드",
+            "required": "N",
+            "typeInfo": "AN(3)",
+            "testValue": "AB1",
+            "size": 3,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "account_num",
+            "desc": "계좌번호",
+            "required": "N",
+            "typeInfo": "AN(24)",
+            "testValue": "AAAA1111",
+            "size": 24,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "currency_code",
+            "desc": "통화코드",
+            "required": "N",
+            "typeInfo": "AN(3)",
+            "testValue": "KRW",
+            "size": 3,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "before_inquiry_trace_info",
+            "desc": "직전조회추적정보",
+            "required": "N",
+            "typeInfo": "AN(20)",
+            "testValue": "AD1",
+            "size": 20,
+            "precision": 0,
+            "type": "STRING"
+        }
+    ],
+    "resFields": [
+        {
+            "fieldName": "rsp_code",
+            "desc": "응답코드",
+            "required": "Y",
+            "typeInfo": "AN(5)",
+            "testValue": "CODE",
+            "size": 5,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "rsp_msg",
+            "desc": "응답 메시지",
+            "required": "Y",
+            "typeInfo": "AH(500)",
+            "testValue": "응답메시지입니다.",
+            "size": 500,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "next_page_yn",
+            "desc": "다음 페이지 존재여부",
+            "required": "Y",
+            "typeInfo": "A(1)",
+            "testValue": "Y",
+            "size": 1,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "before_inquiry_trace_info",
+            "desc": "직전조회추적정보",
+            "required": "Y",
+            "typeInfo": "AN(20)",
+            "testValue": "AA11AA11",
+            "size": 20,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "page_record_cnt",
+            "desc": "현재 페이지 건수",
+            "required": "Y",
+            "typeInfo": "N(5)",
+            "testValue": "2",
+            "size": 5,
+            "precision": 0,
+            "type": "ARRCNT"
+        },
+        {
+            "fieldName": "transaction_list",
+            "desc": "거래 목록",
+            "type": "ARROBJ",
+            "arrMax": 100,
+            "arrFields": [
+                {
+                    "fieldName": "tran_idn_num",
+                    "desc": "거래식별번호",
+                    "required": "Y",
+                    "typeInfo": "AN(8)",
+                    "testValue": "BBBB1111",
+                    "size": 8,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "account_num",
+                    "desc": "계좌번호",
+                    "required": "Y",
+                    "typeInfo": "AN(24)",
+                    "testValue": "CCCC2222",
+                    "size": 24,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "increase_closing_amt",
+                    "desc": "마감변동분 증가 금액",
+                    "required": "Y",
+                    "typeInfo": "N(17,2)",
+                    "testValue": "20000.12",
+                    "size": 17,
+                    "precision": 2,
+                    "type": "NUMDBL"
+                },
+                {
+                    "fieldName": "decrease_closing_amt",
+                    "desc": "마감변동분 감소 금액",
+                    "required": "Y",
+                    "typeInfo": "N(17,2)",
+                    "testValue": "1000.12",
+                    "size": 17,
+                    "precision": 2,
+                    "type": "NUMDBL"
+                },
+                {
+                    "fieldName": "after_balance_amt",
+                    "desc": "거래 후 잔액",
+                    "required": "Y",
+                    "typeInfo": "N(17,2)",
+                    "testValue": "19000",
+                    "size": 17,
+                    "precision": 2,
+                    "type": "NUMDBL"
+                },
+                {
+                    "fieldName": "currency_code",
+                    "desc": "통화코드",
+                    "required": "Y",
+                    "typeInfo": "A(3)",
+                    "testValue": "USD",
+                    "size": 3,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "prod_code",
+                    "desc": "상품코드",
+                    "required": "Y",
+                    "typeInfo": "AN(3)",
+                    "testValue": "CD",
+                    "size": 3,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "base_date",
+                    "desc": "기준일자",
+                    "required": "Y",
+                    "typeInfo": "N(8)",
+                    "testValue": "20220818",
+                    "size": 8,
+                    "precision": 0,
+                    "type": "NUMBER"
+                },
+                {
+                    "fieldName": "rgs_mnbd_dscd",
+                    "desc": "등록주체구분",
+                    "required": "Y",
+                    "typeInfo": "AN(1)",
+                    "testValue": "D",
+                    "size": 1,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "tran_status",
+                    "desc": "거래상태(코드)",
+                    "required": "Y",
+                    "typeInfo": "AN(2)",
+                    "testValue": "A1",
+                    "size": 2,
+                    "precision": 0,
+                    "type": "STRING"
+                }
+            ]
+        }
+    ]
+}

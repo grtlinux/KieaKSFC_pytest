@@ -1,0 +1,51 @@
+{
+    "code": "013",
+    "name": "마감변동분 취소",
+    "method": "POST",
+    "version": "/v1",
+    "path": "/deposit/invr_dpsa/transfer/closing_cancel",
+    "reqFields": [
+        {
+            "fieldName": "account_num",
+            "desc": "계좌번호",
+            "required": "Y",
+            "typeInfo": "AN(24)",
+            "testValue": "A12AA",
+            "size": 24,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "tran_idn_num",
+            "desc": "거래식별번호",
+            "required": "Y",
+            "typeInfo": "AN(8)",
+            "testValue": "AF23",
+            "size": 8,
+            "precision": 0,
+            "type": "STRING"
+        }
+    ],
+    "resFields": [
+        {
+            "fieldName": "rsp_code",
+            "desc": "응답코드",
+            "required": "Y",
+            "typeInfo": "AN(5)",
+            "testValue": "CODE",
+            "size": 5,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "rsp_msg",
+            "desc": "응답 메시지",
+            "required": "Y",
+            "typeInfo": "AH(500)",
+            "testValue": "응답메시지입니다.",
+            "size": 500,
+            "precision": 0,
+            "type": "STRING"
+        }
+    ]
+}

@@ -1,0 +1,109 @@
+{
+    "code": "021",
+    "name": "평잔 조회(월)",
+    "method": "GET",
+    "version": "/v1",
+    "path": "/deposit/invr_dpsa/account/average_balance_monthly",
+    "reqFields": [
+        {
+            "fieldName": "account_num",
+            "desc": "계좌번호",
+            "required": "Y",
+            "typeInfo": "AN(24)",
+            "testValue": "AAFA1212",
+            "size": 24,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "currency_code",
+            "desc": "통화코드",
+            "required": "N",
+            "typeInfo": "A(3)",
+            "testValue": "USD",
+            "size": 3,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "search_year",
+            "desc": "조회연도",
+            "required": "Y",
+            "typeInfo": "N(4)",
+            "testValue": "2023",
+            "size": 4,
+            "precision": 0,
+            "type": "NUMBER"
+        }
+    ],
+    "resFields": [
+        {
+            "fieldName": "rsp_code",
+            "desc": "응답코드",
+            "required": "Y",
+            "typeInfo": "AN(5)",
+            "testValue": "CODE",
+            "size": 5,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "rsp_msg",
+            "desc": "응답 메시지",
+            "required": "Y",
+            "typeInfo": "AH(500)",
+            "testValue": "응답메시지입니다.",
+            "size": 500,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "currency_code",
+            "desc": "통화코드",
+            "required": "Y",
+            "typeInfo": "A(3)",
+            "testValue": "USD",
+            "size": 3,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "page_record_cnt",
+            "desc": "현재 페이지 건수",
+            "required": "Y",
+            "typeInfo": "N(5)",
+            "testValue": "2",
+            "size": 5,
+            "precision": 0,
+            "type": "ARRCNT"
+        },
+        {
+            "fieldName": "average_balance_list",
+            "desc": "평균 잔액 목록",
+            "type": "ARROBJ",
+            "arrMax": 100,
+            "arrFields": [
+                {
+                    "fieldName": "search_period",
+                    "desc": "조회 기간",
+                    "required": "Y",
+                    "typeInfo": "AH(100)",
+                    "testValue": "20220809~20221212",
+                    "size": 100,
+                    "precision": 0,
+                    "type": "STRING"
+                },
+                {
+                    "fieldName": "average_balance",
+                    "desc": "평균 잔액",
+                    "required": "Y",
+                    "typeInfo": "N(17,2)",
+                    "testValue": "300000.12",
+                    "size": 17,
+                    "precision": 2,
+                    "type": "NUMDBL"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,91 @@
+{
+    "code": "999",
+    "name": "접근토큰 발급",
+    "method": "POST",
+    "version": "",
+    "path": "/oauth/2.0/token",
+    "reqFields": [
+        {
+            "fieldName": "grant_type",
+            "desc": "권한부여 방식",
+            "required": "Y",
+            "typeInfo": "aNS(18)",
+            "testValue": "client_credentials",
+            "size": 18,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "client_id",
+            "desc": "클라이언트 ID",
+            "required": "Y",
+            "typeInfo": "aN(50)",
+            "testValue": "<client_id>",
+            "size": 50,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "client_secret",
+            "desc": "비밀번호(Secret)",
+            "required": "Y",
+            "typeInfo": "aN(50)",
+            "testValue": "<client_secret>",
+            "size": 50,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "scope",
+            "desc": "권한 범위",
+            "required": "Y",
+            "typeInfo": "a(6)",
+            "testValue": "manage",
+            "size": 6,
+            "precision": 0,
+            "type": "STRING"
+        }
+    ],
+    "resFields": [
+        {
+            "fieldName": "token_type",
+            "desc": "접근토큰 유형",
+            "required": "Y",
+            "typeInfo": "a(6)",
+            "testValue": "Bearer",
+            "size": 6,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "access_token",
+            "desc": "접근토큰",
+            "required": "Y",
+            "typeInfo": "aNS(1500)",
+            "testValue": "<access_token>",
+            "size": 1500,
+            "precision": 0,
+            "type": "STRING"
+        },
+        {
+            "fieldName": "expires_in",
+            "desc": "접근토큰 유효기간",
+            "required": "Y",
+            "typeInfo": "N(9)",
+            "testValue": "60",
+            "size": 9,
+            "precision": 0,
+            "type": "NUMBER"
+        },
+        {
+            "fieldName": "scope",
+            "desc": "권한 범위",
+            "required": "Y",
+            "typeInfo": "a(6)",
+            "testValue": "manage",
+            "size": 6,
+            "precision": 0,
+            "type": "STRING"
+        }
+    ]
+}
