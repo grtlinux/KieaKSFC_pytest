@@ -149,7 +149,7 @@
             "        char base_rate                                [   7];",
             "        char int_rate                                 [   7];",
             "        char int_amt                                  [  15];",
-            "    }    int_list                                 [ 100];",
+            "    } int_list                                    [ 100];",
             "} STRUCT_017_RES;"
         ]
     }

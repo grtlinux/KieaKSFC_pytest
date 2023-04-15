@@ -37,11 +37,12 @@ def get_struct(lstFlds: list|None= None, indent: str|None= '') -> list:
     indent += '    '
     for fld in lstFlds:
         if fld['type'] == 'ARROBJ':
-            lstStruct.append('%sstruct {' % (indent))
+            lstStruct.append(f'{indent}struct {{')
             lstStruct.extend(get_struct(lstFlds=fld['arrFields'], indent=indent))
-            lstStruct.append('%s}    %-40s [%4d];' % (indent, fld['fieldName'], fld['arrMax']))
+            # lstStruct.append('%s}    %-40s [%4d];' % (indent, fld['fieldName'], fld['arrMax']))
+            lstStruct.append(f'{indent}}} {fld["fieldName"]: <40}    [{fld["arrMax"]: >4}];')
         else:
-            lstStruct.append('%schar %-40s [%4d];' % (indent, fld['fieldName'], fld['size']))
+            lstStruct.append(f'{indent}char {fld["fieldName"]: <40} [{fld["size"]: >4}];')
     return lstStruct
 
 # ----------------------------------------------

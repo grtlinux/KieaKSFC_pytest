@@ -127,7 +127,7 @@
             "    struct {",
             "        char search_period                            [ 100];",
             "        char average_balance                          [  17];",
-            "    }    average_balance_list                     [ 100];",
+            "    } average_balance_list                        [ 100];",
             "} STRUCT_021_RES;"
         ]
     }

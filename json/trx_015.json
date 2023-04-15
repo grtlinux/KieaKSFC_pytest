@@ -215,7 +215,7 @@
             "        char deposit_amt                              [  17];",
             "        char after_balance_amt                        [  17];",
             "        char print_content                            [ 100];",
-            "    }    transaction_list                         [ 100];",
+            "    } transaction_list                            [ 100];",
             "} STRUCT_015_RES;"
         ]
     }

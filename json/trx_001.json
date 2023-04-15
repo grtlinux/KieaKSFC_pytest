@@ -160,7 +160,7 @@
             "        char rsdn_dscd                                [   1];",
             "        char dps_mth_dscd                             [   1];",
             "        char deposit_time_point_dscd                  [   1];",
-            "    }    account_list                             [ 100];",
+            "    } account_list                                [ 100];",
             "} STRUCT_001_RES;"
         ]
     }

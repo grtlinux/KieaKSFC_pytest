@@ -193,7 +193,7 @@
             "        char deposit_time_point_dscd                  [   1];",
             "        char balance_amt                              [  17];",
             "        char currency_code                            [   3];",
-            "    }    account_list                             [ 100];",
+            "    } account_list                                [ 100];",
             "} STRUCT_002_RES;"
         ]
     }

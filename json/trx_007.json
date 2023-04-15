@@ -237,7 +237,7 @@
             "        char prod_code                                [   3];",
             "        char rgs_mnbd_dscd                            [   1];",
             "        char tran_status                              [   2];",
-            "    }    transaction_list                         [ 100];",
+            "    } transaction_list                            [ 100];",
             "} STRUCT_007_RES;"
         ]
     }

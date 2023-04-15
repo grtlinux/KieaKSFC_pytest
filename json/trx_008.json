@@ -284,7 +284,7 @@
             "        char bank_name                                [ 100];",
             "        char settlement_account_num                   [  24];",
             "        char settlement_amt                           [  17];",
-            "    }    settlement_info                          [   5];",
+            "    } settlement_info                             [   5];",
             "    char optr_email_yn                            [   1];",
             "    char optr_email_address                       [ 200];",
             "    char apvr_email_yn                            [   1];",

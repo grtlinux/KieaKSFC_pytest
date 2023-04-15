@@ -171,7 +171,7 @@
             "        char increase_amt                             [  17];",
             "        char decrease_amt                             [  17];",
             "        char after_balance_amt                        [  17];",
-            "    }    daily_balance_list                       [ 100];",
+            "    } daily_balance_list                          [ 100];",
             "} STRUCT_018_RES;"
         ]
     }
