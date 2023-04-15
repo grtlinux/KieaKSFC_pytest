@@ -63,8 +63,10 @@ def get_stream(lstFlds: list|None= None, flgBlank: bool|None= False) -> list:
                     lstStream.extend(get_stream(fld['arrFields'], True))
         elif not flgBlank:
             if fld['type'] == 'STRING':
+                # lstStream.append(f"[%-{fld['size']}s]" % (fld['testValue']))
                 lstStream.append(f"%-{fld['size']}s" % (fld['testValue']))
             else:
+                # lstStream.append(f"[%{fld['size']}s]" % (fld['testValue']))
                 lstStream.append(f"%{fld['size']}s" % (fld['testValue']))
         else:
             lstStream.append(' ' * fld['size'])
