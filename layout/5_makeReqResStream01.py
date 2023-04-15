@@ -85,7 +85,7 @@ def readTrxToReqResStream(jsonFilePath: str|None= None) -> None:
         code = dicTrx['code']
     
         # make req_XXX.json
-        jsonFileName = f'{jsonFilePath}/sreq_{code}.json'
+        jsonFileName = f'{jsonFilePath}/sreq_{code}.txt'
         lstStream = get_stream(dicTrx['reqFields'])
         # print('>>>', jsonFileName, lstStream)
         # sys.exit()
@@ -95,7 +95,7 @@ def readTrxToReqResStream(jsonFilePath: str|None= None) -> None:
         print(getFuncName(), jsonFileName)
 
         # make res_XXX.json
-        jsonFileName = f'{jsonFilePath}/sres_{code}.json'
+        jsonFileName = f'{jsonFilePath}/sres_{code}.txt'
         lstStream = get_stream(dicTrx['resFields'])
         with open(jsonFileName, 'w', encoding='euckr') as file:
             file.write(''.join(lstStream))
