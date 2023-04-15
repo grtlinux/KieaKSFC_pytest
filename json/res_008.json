@@ -1,0 +1,33 @@
+{
+    "rsp_code": "CODE",
+    "rsp_msg": "응답메시지입니다",
+    "withdraw_tran_amt": "30000",
+    "deposit_tran_amt": "10000",
+    "currency_code": "USD",
+    "prod_code": "CO",
+    "tran_status": "B1",
+    "withdraw_reason_code": "C1",
+    "settlement_info_cnt": "2",
+    "settlement_info": [
+        {
+            "bank_code": "AB",
+            "bank_name": "신한",
+            "settlement_account_num": "ABCD1234",
+            "settlement_amt": "30000.12"
+        },
+        {
+            "bank_code": "AB",
+            "bank_name": "신한",
+            "settlement_account_num": "ABCD1234",
+            "settlement_amt": "30000.12"
+        }
+    ],
+    "optr_email_yn": "Y",
+    "optr_email_address": "4455qqq@naver.com",
+    "apvr_email_yn": "Y",
+    "apvr_email_address": "gksruf2848@naver.com",
+    "optr_sms_yn": "Y",
+    "optr_mobile_num": "54149634",
+    "apvr_sms_yn": "Y",
+    "apvr_mobile_num": "58446024"
+}

@@ -255,5 +255,45 @@
             "precision": 0,
             "type": "NUMBER"
         }
-    ]
+    ],
+    "length": {
+        "req": 40,
+        "res": 1718
+    },
+    "struct": {
+        "req": [
+            "typedef struct {",
+            "    char account_num                              [  24];",
+            "    char tran_date                                [   8];",
+            "    char tran_idn_num                             [   8];",
+            "} STRUCT_008_REQ;"
+        ],
+        "res": [
+            "typedef struct {",
+            "    char rsp_code                                 [   5];",
+            "    char rsp_msg                                  [ 500];",
+            "    char withdraw_tran_amt                        [  17];",
+            "    char deposit_tran_amt                         [  17];",
+            "    char currency_code                            [   3];",
+            "    char prod_code                                [   3];",
+            "    char tran_status                              [   2];",
+            "    char withdraw_reason_code                     [   2];",
+            "    char settlement_info_cnt                      [   5];",
+            "    struct {",
+            "        char bank_code                                [   3];",
+            "        char bank_name                                [ 100];",
+            "        char settlement_account_num                   [  24];",
+            "        char settlement_amt                           [  17];",
+            "    }    settlement_info                          [   5];",
+            "    char optr_email_yn                            [   1];",
+            "    char optr_email_address                       [ 200];",
+            "    char apvr_email_yn                            [   1];",
+            "    char apvr_email_address                       [ 200];",
+            "    char optr_sms_yn                              [   1];",
+            "    char optr_mobile_num                          [  20];",
+            "    char apvr_sms_yn                              [   1];",
+            "    char apvr_mobile_num                          [  20];",
+            "} STRUCT_008_RES;"
+        ]
+    }
 }

@@ -64,5 +64,25 @@
             "precision": 0,
             "type": "STRING"
         }
-    ]
+    ],
+    "length": {
+        "req": 100,
+        "res": 100
+    },
+    "struct": {
+        "req": [
+            "typedef struct {",
+            "    char trx_code                                 [   3];",
+            "    char trx_reqres                               [   3];",
+            "    char reserved                                 [  94];",
+            "} STRUCT_HDR_REQ;"
+        ],
+        "res": [
+            "typedef struct {",
+            "    char trx_code                                 [   3];",
+            "    char trx_reqres                               [   3];",
+            "    char reserved                                 [  94];",
+            "} STRUCT_HDR_RES;"
+        ]
+    }
 }

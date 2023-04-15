@@ -263,5 +263,47 @@
             "precision": 0,
             "type": "STRING"
         }
-    ]
+    ],
+    "length": {
+        "req": 953,
+        "res": 513
+    },
+    "struct": {
+        "req": [
+            "typedef struct {",
+            "    char account_num                              [  24];",
+            "    char currency_code                            [   3];",
+            "    char tran_amt                                 [  17];",
+            "    char withdraw_reason_code                     [   2];",
+            "    char settlement_info_withdraw_cnt             [   5];",
+            "    struct {",
+            "        char bank_code                                [   3];",
+            "        char settlement_account_num                   [  24];",
+            "        char settlement_amt                           [  17];",
+            "    }    settlement_info_withdraw                 [   5];",
+            "    char consignment_guarantee                    [  17];",
+            "    char deposit_requirement_change_details_cnt   [   5];",
+            "    struct {",
+            "        char deposit_requirement_type                 [   2];",
+            "        char increase_amt                             [  17];",
+            "        char decrease_amt                             [  17];",
+            "    }    deposit_requirement_change_details       [   6];",
+            "    char optr_email_yn                            [   1];",
+            "    char optr_email_address                       [ 200];",
+            "    char apvr_email_yn                            [   1];",
+            "    char apvr_email_address                       [ 200];",
+            "    char optr_sms_yn                              [   1];",
+            "    char optr_mobile_num                          [  20];",
+            "    char apvr_sms_yn                              [   1];",
+            "    char apvr_mobile_num                          [  20];",
+            "} STRUCT_004_REQ;"
+        ],
+        "res": [
+            "typedef struct {",
+            "    char rsp_code                                 [   5];",
+            "    char rsp_msg                                  [ 500];",
+            "    char tran_idn_num                             [   8];",
+            "} STRUCT_004_RES;"
+        ]
+    }
 }

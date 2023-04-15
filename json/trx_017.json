@@ -125,5 +125,32 @@
                 }
             ]
         }
-    ]
+    ],
+    "length": {
+        "req": 24,
+        "res": 5733
+    },
+    "struct": {
+        "req": [
+            "typedef struct {",
+            "    char account_num                              [  24];",
+            "} STRUCT_017_REQ;"
+        ],
+        "res": [
+            "typedef struct {",
+            "    char rsp_code                                 [   5];",
+            "    char rsp_msg                                  [ 500];",
+            "    char total_int_amt                            [  15];",
+            "    char int_rcv_date                             [   8];",
+            "    char page_record_cnt                          [   5];",
+            "    struct {",
+            "        char date                                     [   8];",
+            "        char balance                                  [  15];",
+            "        char base_rate                                [   7];",
+            "        char int_rate                                 [   7];",
+            "        char int_amt                                  [  15];",
+            "    }    int_list                                 [ 100];",
+            "} STRUCT_017_RES;"
+        ]
+    }
 }

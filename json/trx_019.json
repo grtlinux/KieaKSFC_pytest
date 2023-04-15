@@ -105,5 +105,30 @@
                 }
             ]
         }
-    ]
+    ],
+    "length": {
+        "req": 31,
+        "res": 12213
+    },
+    "struct": {
+        "req": [
+            "typedef struct {",
+            "    char account_num                              [  24];",
+            "    char currency_code                            [   3];",
+            "    char search_year                              [   4];",
+            "} STRUCT_019_REQ;"
+        ],
+        "res": [
+            "typedef struct {",
+            "    char rsp_code                                 [   5];",
+            "    char rsp_msg                                  [ 500];",
+            "    char currency_code                            [   3];",
+            "    char page_record_cnt                          [   5];",
+            "    struct {",
+            "        char search_period                            [ 100];",
+            "        char average_balance                          [  17];",
+            "    }    average_balance_list                     [ 100];",
+            "} STRUCT_019_RES;"
+        ]
+    }
 }

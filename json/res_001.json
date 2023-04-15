@@ -1,0 +1,33 @@
+{
+    "rsp_code": "AAA",
+    "rsp_msg": "메시지입니다.",
+    "next_page_yn": "Y",
+    "before_inquiry_trace_info": "AAA111",
+    "page_record_cnt": "3",
+    "account_list": [
+        {
+            "prod_code": "CO",
+            "prod_name": "상품이름입니다",
+            "account_num": "ABCD1234",
+            "rsdn_dscd": "1",
+            "dps_mth_dscd": "0",
+            "deposit_time_point_dscd": "1"
+        },
+        {
+            "prod_code": "CO",
+            "prod_name": "상품이름입니다",
+            "account_num": "ABCD1234",
+            "rsdn_dscd": "1",
+            "dps_mth_dscd": "0",
+            "deposit_time_point_dscd": "1"
+        },
+        {
+            "prod_code": "CO",
+            "prod_name": "상품이름입니다",
+            "account_num": "ABCD1234",
+            "rsdn_dscd": "1",
+            "dps_mth_dscd": "0",
+            "deposit_time_point_dscd": "1"
+        }
+    ]
+}

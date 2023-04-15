@@ -235,5 +235,43 @@
                 }
             ]
         }
-    ]
+    ],
+    "length": {
+        "req": 60,
+        "res": 10531
+    },
+    "struct": {
+        "req": [
+            "typedef struct {",
+            "    char tran_date                                [   8];",
+            "    char search_type                              [   1];",
+            "    char dps_mth_dscd                             [   1];",
+            "    char prod_code                                [   3];",
+            "    char account_num                              [  24];",
+            "    char currency_code                            [   3];",
+            "    char before_inquiry_trace_info                [  20];",
+            "} STRUCT_014_REQ;"
+        ],
+        "res": [
+            "typedef struct {",
+            "    char rsp_code                                 [   5];",
+            "    char rsp_msg                                  [ 500];",
+            "    char next_page_yn                             [   1];",
+            "    char before_inquiry_trace_info                [  20];",
+            "    char page_record_cnt                          [   5];",
+            "    struct {",
+            "        char tran_idn_num                             [   8];",
+            "        char account_num                              [  24];",
+            "        char increase_closing_amt                     [  17];",
+            "        char decrease_closing_amt                     [  17];",
+            "        char after_balance_amt                        [  17];",
+            "        char currency_code                            [   3];",
+            "        char prod_code                                [   3];",
+            "        char base_date                                [   8];",
+            "        char rgs_mnbd_dscd                            [   1];",
+            "        char tran_status                              [   2];",
+            "    }    transaction_list                         [ 100];",
+            "} STRUCT_014_RES;"
+        ]
+    }
 }

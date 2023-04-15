@@ -185,5 +185,38 @@
                 }
             ]
         }
-    ]
+    ],
+    "length": {
+        "req": 63,
+        "res": 16452
+    },
+    "struct": {
+        "req": [
+            "typedef struct {",
+            "    char account_num                              [  24];",
+            "    char currency_code                            [   3];",
+            "    char from_date                                [   8];",
+            "    char to_date                                  [   8];",
+            "    char before_inquiry_trace_info                [  20];",
+            "} STRUCT_015_REQ;"
+        ],
+        "res": [
+            "typedef struct {",
+            "    char rsp_code                                 [   5];",
+            "    char rsp_msg                                  [ 500];",
+            "    char next_page_yn                             [   1];",
+            "    char before_inquiry_trace_info                [  20];",
+            "    char currency_code                            [   3];",
+            "    char total_record_cnt                         [  18];",
+            "    char page_record_cnt                          [   5];",
+            "    struct {",
+            "        char tran_date                                [   8];",
+            "        char withdrawal_amt                           [  17];",
+            "        char deposit_amt                              [  17];",
+            "        char after_balance_amt                        [  17];",
+            "        char print_content                            [ 100];",
+            "    }    transaction_list                         [ 100];",
+            "} STRUCT_015_RES;"
+        ]
+    }
 }

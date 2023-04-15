@@ -115,5 +115,31 @@
                 }
             ]
         }
-    ]
+    ],
+    "length": {
+        "req": 31,
+        "res": 3313
+    },
+    "struct": {
+        "req": [
+            "typedef struct {",
+            "    char account_num                              [  24];",
+            "    char currency_code                            [   3];",
+            "    char search_year                              [   4];",
+            "} STRUCT_016_REQ;"
+        ],
+        "res": [
+            "typedef struct {",
+            "    char rsp_code                                 [   5];",
+            "    char rsp_msg                                  [ 500];",
+            "    char currency_code                            [   3];",
+            "    char page_record_cnt                          [   5];",
+            "    struct {",
+            "        char tran_date                                [   8];",
+            "        char int_dvd_amt                              [  17];",
+            "        char currency_code                            [   3];",
+            "    }    transaction_list                         [ 100];",
+            "} STRUCT_016_RES;"
+        ]
+    }
 }

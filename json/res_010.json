@@ -1,0 +1,106 @@
+{
+    "rsp_code": "CODE",
+    "rsp_msg": "응답메시지입니다",
+    "tran_idn_num": "ABC123",
+    "base_date": "20220818",
+    "tran_status": "B1",
+    "before_date_balance_amt": "30000",
+    "increase_amt": "2000",
+    "decrease_amt": "2000",
+    "after_balance_amt": "25000",
+    "int_dvd_amt": "1000",
+    "tran_date_rffp_req_amt": "10000",
+    "specified_money_in_trust": "50000",
+    "withdraw_tran_amt": "20000",
+    "deposit_tran_amt": "20000",
+    "withdraw_reason_cnt": "2",
+    "withdraw_reason_list": [
+        {
+            "withdraw_reason_code": "B2",
+            "withdraw_reason_name": "그냥"
+        },
+        {
+            "withdraw_reason_code": "B2",
+            "withdraw_reason_name": "그냥"
+        }
+    ],
+    "settlement_info_withdraw_cnt": "2",
+    "settlement_info_withdraw": [
+        {
+            "bank_code": "AB",
+            "bank_name": "신한",
+            "settlement_account_num": "ABCD1234",
+            "settlement_amt": "50000",
+            "is_main_account": "Y"
+        },
+        {
+            "bank_code": "AB",
+            "bank_name": "신한",
+            "settlement_account_num": "ABCD1234",
+            "settlement_amt": "50000",
+            "is_main_account": "Y"
+        }
+    ],
+    "settlement_info_deposit_cnt": "2",
+    "settlement_info_deposit": [
+        {
+            "bank_code": "AB",
+            "bank_name": "신한",
+            "settlement_account_num": "ABCD1234",
+            "settlement_amt": "30000.12",
+            "is_main_account": "Y"
+        },
+        {
+            "bank_code": "AB",
+            "bank_name": "신한",
+            "settlement_account_num": "ABCD1234",
+            "settlement_amt": "30000.12",
+            "is_main_account": "Y"
+        }
+    ],
+    "next_tran_date_rffp_req_possible_amt": "30000",
+    "next_tran_date_rffp_req_amt": "1000",
+    "settlement_info_rffp_cnt": "2",
+    "settlement_info_rffp": [
+        {
+            "bank_code": "AB",
+            "bank_name": "신한",
+            "settlement_account_num": "BBBB1111",
+            "settlement_amt": "2000",
+            "is_main_account": "Y"
+        },
+        {
+            "bank_code": "AB",
+            "bank_name": "신한",
+            "settlement_account_num": "BBBB1111",
+            "settlement_amt": "2000",
+            "is_main_account": "Y"
+        }
+    ],
+    "consignment_guarantee": "1000",
+    "deposit_requirement_change_details_cnt": "2",
+    "deposit_requirement_change_details": [
+        {
+            "deposit_requirement_type": "A1",
+            "before_date_balance_amt": "40000",
+            "increase_amt": "2000",
+            "decrease_amt": "2000",
+            "base_date_balance_amt": "38000"
+        },
+        {
+            "deposit_requirement_type": "A1",
+            "before_date_balance_amt": "40000",
+            "increase_amt": "2000",
+            "decrease_amt": "2000",
+            "base_date_balance_amt": "38000"
+        }
+    ],
+    "optr_email_yn": "Y",
+    "optr_email_address": "4455qqq@naver.com",
+    "apvr_email_yn": "Y",
+    "apvr_email_address": "gksruf2848@naver.com",
+    "optr_sms_yn": "Y",
+    "optr_mobile_num": "01054149634",
+    "apvr_sms_yn": "Y",
+    "apvr_mobile_num": "01058446024"
+}

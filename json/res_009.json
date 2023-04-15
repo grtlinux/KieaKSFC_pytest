@@ -1,0 +1,85 @@
+{
+    "rsp_code": "CODE",
+    "rsp_msg": "응답메시지입니다",
+    "tran_idn_num": "BBB111",
+    "tran_status": "C1",
+    "currency_code": "USD",
+    "before_date_balance_amt": "10000",
+    "increase_amt": "4000.12",
+    "decrease_amt": "5000.12",
+    "after_balance_amt": "9000",
+    "int_dvd_amt": "500.12",
+    "withdraw_tran_amt": "1000",
+    "deposit_tran_amt": "2000",
+    "withdraw_reason_cnt": "2",
+    "withdraw_reason_list": [
+        {
+            "withdraw_reason_code": "C2",
+            "withdraw_reason_name": "그냥"
+        },
+        {
+            "withdraw_reason_code": "C2",
+            "withdraw_reason_name": "그냥"
+        }
+    ],
+    "settlement_info_withdraw_cnt": "2",
+    "settlement_info_withdraw": [
+        {
+            "bank_code": "AB",
+            "bank_name": "신한",
+            "settlement_account_num": "ABCD1234",
+            "settlement_amt": "5000.12",
+            "is_main_account": "Y"
+        },
+        {
+            "bank_code": "AB",
+            "bank_name": "신한",
+            "settlement_account_num": "ABCD1234",
+            "settlement_amt": "5000.12",
+            "is_main_account": "Y"
+        }
+    ],
+    "settlement_info_deposit_cnt": "2",
+    "settlement_info_deposit": [
+        {
+            "bank_code": "AB",
+            "bank_name": "신한",
+            "settlement_account_num": "ABCD1234",
+            "settlement_amt": "20000.12",
+            "is_main_account": "Y"
+        },
+        {
+            "bank_code": "AB",
+            "bank_name": "신한",
+            "settlement_account_num": "ABCD1234",
+            "settlement_amt": "20000.12",
+            "is_main_account": "Y"
+        }
+    ],
+    "consignment_guarantee": "10000.12",
+    "deposit_requirement_change_details_cnt": "2",
+    "deposit_requirement_change_details": [
+        {
+            "deposit_requirement_type": "C1",
+            "before_date_balance_amt": "20000.12",
+            "increase_amt": "1000.12",
+            "decrease_amt": "1000.12",
+            "base_date_balance_amt": "20000.12"
+        },
+        {
+            "deposit_requirement_type": "C1",
+            "before_date_balance_amt": "20000.12",
+            "increase_amt": "1000.12",
+            "decrease_amt": "1000.12",
+            "base_date_balance_amt": "20000.12"
+        }
+    ],
+    "optr_email_yn": "Y",
+    "optr_email_address": "4455qqq@naver.com",
+    "apvr_email_yn": "Y",
+    "apvr_email_address": "gksruf2848@naver.com",
+    "optr_sms_yn": "Y",
+    "optr_mobile_num": "54149634",
+    "apvr_sms_yn": "Y",
+    "apvr_mobile_num": "58446024"
+}

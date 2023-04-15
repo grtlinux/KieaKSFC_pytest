@@ -1,0 +1,18 @@
+{
+    "rsp_code": "CODE",
+    "rsp_msg": "응답메시지입니다.",
+    "currency_code": "USD",
+    "page_record_cnt": "2",
+    "transaction_list": [
+        {
+            "tran_date": "20220818",
+            "int_dvd_amt": "3000.12",
+            "currency_code": "USD"
+        },
+        {
+            "tran_date": "20220818",
+            "int_dvd_amt": "3000.12",
+            "currency_code": "USD"
+        }
+    ]
+}

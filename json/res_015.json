@@ -1,0 +1,25 @@
+{
+    "rsp_code": "CODE",
+    "rsp_msg": "응답메시지입니다",
+    "next_page_yn": "Y",
+    "before_inquiry_trace_info": "BBAA1122",
+    "currency_code": "USD",
+    "total_record_cnt": "2323",
+    "page_record_cnt": "2",
+    "transaction_list": [
+        {
+            "tran_date": "20220818",
+            "withdrawal_amt": "200000.12",
+            "deposit_amt": "100000.12",
+            "after_balance_amt": "300000",
+            "print_content": "통장인자내용입니다"
+        },
+        {
+            "tran_date": "20220818",
+            "withdrawal_amt": "200000.12",
+            "deposit_amt": "100000.12",
+            "after_balance_amt": "300000",
+            "print_content": "통장인자내용입니다"
+        }
+    ]
+}

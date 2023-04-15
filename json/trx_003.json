@@ -329,5 +329,56 @@
                 }
             ]
         }
-    ]
+    ],
+    "length": {
+        "req": 27,
+        "res": 5373
+    },
+    "struct": {
+        "req": [
+            "typedef struct {",
+            "    char account_num                              [  24];",
+            "    char currency_code                            [   3];",
+            "} STRUCT_003_REQ;"
+        ],
+        "res": [
+            "typedef struct {",
+            "    char rsp_code                                 [   5];",
+            "    char rsp_msg                                  [ 500];",
+            "    char currency_code                            [   3];",
+            "    char before_date_balance_amt                  [  17];",
+            "    char balance_amt                              [  17];",
+            "    char excess_balance                           [  17];",
+            "    char rffp_settlement_possible_amt             [  17];",
+            "    char settlement_info_withdraw_cnt             [   5];",
+            "    struct {",
+            "        char bank_code                                [   3];",
+            "        char bank_name                                [ 100];",
+            "        char settlement_account_num                   [  24];",
+            "        char is_main_account                          [   1];",
+            "    }    settlement_info_withdraw                 [   5];",
+            "    char settlement_info_deposit_cnt              [   5];",
+            "    struct {",
+            "        char bank_code                                [   3];",
+            "        char bank_name                                [ 100];",
+            "        char settlement_account_num                   [  24];",
+            "        char is_main_account                          [   1];",
+            "    }    settlement_info_deposit                  [   5];",
+            "    char withdraw_reason_cnt                      [   5];",
+            "    struct {",
+            "        char withdraw_reason_code                     [   2];",
+            "        char withdraw_reason_name                     [ 100];",
+            "    }    withdraw_reason_list                     [  30];",
+            "    char consignment_guarantee                    [  17];",
+            "    char deposit_requirement_change_details_cnt   [   5];",
+            "    struct {",
+            "        char deposit_requirement_type                 [   2];",
+            "        char before_date_balance_amt                  [  17];",
+            "        char increase_amt                             [  17];",
+            "        char decrease_amt                             [  17];",
+            "        char base_date_balance_amt                    [  17];",
+            "    }    deposit_requirement_change_details       [   6];",
+            "} STRUCT_003_RES;"
+        ]
+    }
 }

@@ -165,5 +165,36 @@
                 }
             ]
         }
-    ]
+    ],
+    "length": {
+        "req": 21,
+        "res": 9531
+    },
+    "struct": {
+        "req": [
+            "typedef struct {",
+            "    char dps_mth_dscd                             [   1];",
+            "    char before_inquiry_trace_info                [  20];",
+            "} STRUCT_002_REQ;"
+        ],
+        "res": [
+            "typedef struct {",
+            "    char rsp_code                                 [   5];",
+            "    char rsp_msg                                  [ 500];",
+            "    char next_page_yn                             [   1];",
+            "    char before_inquiry_trace_info                [  20];",
+            "    char page_record_cnt                          [   5];",
+            "    struct {",
+            "        char prod_code                                [   3];",
+            "        char prod_name                                [  40];",
+            "        char account_num                              [  24];",
+            "        char rsdn_dscd                                [   1];",
+            "        char dps_mth_dscd                             [   1];",
+            "        char deposit_time_point_dscd                  [   1];",
+            "        char balance_amt                              [  17];",
+            "        char currency_code                            [   3];",
+            "    }    account_list                             [ 100];",
+            "} STRUCT_002_RES;"
+        ]
+    }
 }

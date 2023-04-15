@@ -87,5 +87,27 @@
             "precision": 0,
             "type": "STRING"
         }
-    ]
+    ],
+    "length": {
+        "req": 124,
+        "res": 1521
+    },
+    "struct": {
+        "req": [
+            "typedef struct {",
+            "    char grant_type                               [  18];",
+            "    char client_id                                [  50];",
+            "    char client_secret                            [  50];",
+            "    char scope                                    [   6];",
+            "} STRUCT_999_REQ;"
+        ],
+        "res": [
+            "typedef struct {",
+            "    char token_type                               [   6];",
+            "    char access_token                             [1500];",
+            "    char expires_in                               [   9];",
+            "    char scope                                    [   6];",
+            "} STRUCT_999_RES;"
+        ]
+    }
 }

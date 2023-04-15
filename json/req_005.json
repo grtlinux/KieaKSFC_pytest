@@ -1,0 +1,40 @@
+{
+    "account_num": "AAAA1111",
+    "currency_code": "USD",
+    "tran_amt": "12.12",
+    "settlement_info_deposit_cnt": "2",
+    "settlement_info_withdraw": [
+        {
+            "bank_code": "A1",
+            "settlement_account_num": "AAAA1111",
+            "settlement_amt": "12.12"
+        },
+        {
+            "bank_code": "A1",
+            "settlement_account_num": "AAAA1111",
+            "settlement_amt": "12.12"
+        }
+    ],
+    "consignment_guarantee": "12.12",
+    "deposit_requirement_change_details_cnt": "2",
+    "deposit_requirement_change_details": [
+        {
+            "deposit_requirement_type": "A1",
+            "increase_amt": "12.12",
+            "decrease_amt": "12.12"
+        },
+        {
+            "deposit_requirement_type": "A1",
+            "increase_amt": "12.12",
+            "decrease_amt": "12.12"
+        }
+    ],
+    "optr_email_yn": "Y",
+    "optr_email_address": "qwer@naver.com",
+    "apvr_email_yn": "Y",
+    "apvr_email_address": "asdf@naver.com",
+    "optr_sms_yn": "Y",
+    "optr_mobile_num": "01010101010",
+    "apvr_sms_yn": "Y",
+    "apvr_mobile_num": "01010101010"
+}

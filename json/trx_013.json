@@ -47,5 +47,23 @@
             "precision": 0,
             "type": "STRING"
         }
-    ]
+    ],
+    "length": {
+        "req": 32,
+        "res": 505
+    },
+    "struct": {
+        "req": [
+            "typedef struct {",
+            "    char account_num                              [  24];",
+            "    char tran_idn_num                             [   8];",
+            "} STRUCT_013_REQ;"
+        ],
+        "res": [
+            "typedef struct {",
+            "    char rsp_code                                 [   5];",
+            "    char rsp_msg                                  [ 500];",
+            "} STRUCT_013_RES;"
+        ]
+    }
 }
