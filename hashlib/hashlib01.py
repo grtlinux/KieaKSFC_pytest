@@ -7,6 +7,10 @@
 # file: .pylintrc
 """
 program: hashlib01.py
+    Comment:
+        SHA-1
+        SHA-2
+        SHA-3
     RUN:
         $ python -V
             Python 3.10.9
