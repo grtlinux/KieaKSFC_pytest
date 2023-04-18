@@ -10,6 +10,7 @@ program: test_async_main.py
     REF:
         https://sehoi.github.io/etc/fastapi-pytest/
         https://kibua20.tistory.com/227
+        https://docs.pytest.org/en/stable/index.html
     READY:
         $ pip install fastapi
         $ pip install uvicorn
@@ -29,7 +30,7 @@ import json
 import pytest
 from httpx import AsyncClient
 
-pytest.mark.asyncio
+@pytest.mark.asyncio
 async def test_root():
     async with AsyncClient(base_url="http://127.0.0.1:8000") as ac:
         response = await ac.get("/")

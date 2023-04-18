@@ -10,6 +10,7 @@ program: test_main.py
     REF:
         https://sehoi.github.io/etc/fastapi-pytest/
         https://kibua20.tistory.com/227
+        https://docs.pytest.org/en/stable/index.html
     READY:
         $ pip install fastapi
         $ pip install uvicorn
@@ -23,6 +24,11 @@ program: test_main.py
             Python 3.10.9
         < uvicorn main:app --reload 을 실행하지 않는다. >
         $ pytest -v test_main.py
+    COMMENT:
+        이제 세가지 API 함수에 대해 테스트하는 함수들을 작성하겠습니다.
+        test_root(): “root“ API 함수에 대해 GET 방식으로 요청하여 테스트하는 함수 입니다.
+        test_read_item(): “read_item“ API 함수에 대해 item_id가 1인 item을 params 값에 추가하여 GET 방식으로 요청하여 테스트하는 함수 입니다.
+        test_create_item(): “create_item“ API 함수에 대해 생성할 item을 json 값에 추가하여 POST 방식으로 요청하여 테스트하는 함수 입니다.
 """
 
 from fastapi.testclient import TestClient
@@ -30,16 +36,6 @@ from fastapi.testclient import TestClient
 from main import app
 
 client = TestClient(app)
-
-'''
-이제 세가지 API 함수에 대해 테스트하는 함수들을 작성하겠습니다.
-
-test_root(): “root“ API 함수에 대해 GET 방식으로 요청하여 테스트하는 함수 입니다.
-
-test_read_item(): “read_item“ API 함수에 대해 item_id가 1인 item을 params 값에 추가하여 GET 방식으로 요청하여 테스트하는 함수 입니다.
-
-test_create_item(): “create_item“ API 함수에 대해 생성할 item을 json 값에 추가하여 POST 방식으로 요청하여 테스트하는 함수 입니다.
-'''
 
 def test_root():
     response = client.get("/")
