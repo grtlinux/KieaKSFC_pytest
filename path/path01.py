@@ -54,6 +54,7 @@ def getPath6():
     ''' getPath6() '''
     lst = __file__.split(os.sep)
     print('6>', type(reversed(lst)), [x for x in reversed(lst)][0])
+    print('6>', lst[::-1][0])
     pass
 
 if __name__ == '__main__':

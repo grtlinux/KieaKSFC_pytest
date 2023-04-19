@@ -15,11 +15,16 @@ comment:
 '''
 import os
 
+import os
+
 # ------------------------------------------------------------
 HOME_PATH = '/Users/kang-air'
-JOB_PATH = os.sep.join([HOME_PATH, 'KANG/_GIT_HUB/python/github', 'KieaKSFC_pytest/copyright'])
-BASE_PATH = f'{JOB_PATH}/before'
+JOB_PATH = os.sep.join([HOME_PATH, 'KANG/_GIT_HUB/python/github/KieaKSFC_pytest', 'copyright'])
+FROM_PATH = f'{JOB_PATH}/before'
 TO_PATH = f'{JOB_PATH}/after'
+
+EXT = 'properties'
+EXT2 = 'props'
 
 # ------------------------------------------------------------
 def find_files(path: str, ext: str) -> list:
@@ -31,12 +36,36 @@ def find_files(path: str, ext: str) -> list:
             if file.endswith(f".{ext}"):
                 lstFiles.append(os.path.join(root, file))
     return lstFiles
-
+'''
+'''
+# ------------------------------------------------------------
+def get_copyright_str(path: str, ext: str) -> str:
+    ''' get_copyright_str '''
+    with open(f'{path}/copyright_{ext}.txt', 'r') as f:
+        return f.read()
+    return ''
+'''
+'''
+# ------------------------------------------------------------
+def save_copyright_files(files: list, copyright_str: str, to_path: str) -> None:
+    ''' save_copyright_files '''
+    for file in files:
+        to_file = f'{to_path}/{file.split(os.sep)[-1]}'
+        with open(file, 'r') as f:
+            lines = f.readlines()
+        with open(to_file, 'w') as f:
+            f.write(copyright_str)
+            f.write('\n')
+            f.writelines(lines)
+'''
+'''
 # ------------------------------------------------------------
 def main() -> None:
     ''' main function '''
-    files = find_files(BASE_PATH, 'properties')
-    print('>>>', files)
+    files = find_files(FROM_PATH, EXT)
+    copyright_str = get_copyright_str(JOB_PATH, EXT2)
+    print('>>>', copyright_str)
+    save_copyright_files(files, copyright_str, TO_PATH)
     pass
 '''
 '''
