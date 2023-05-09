@@ -16,6 +16,7 @@ program: 23_multiprocessing_queue.py
         $ python 23_multiprocessing_queue.py
 """
 import multiprocessing
+import time
 
 class MyFancyClass:
 
@@ -33,16 +34,24 @@ def worker(queue):
 
 if __name__ == '__main__':
     queue = multiprocessing.Queue()
+    lst = []
+    for i in range(5):
+        p = multiprocessing.Process(target=worker, args=(queue,))
+        lst.append(p)
+        p.start()
 
-    p = multiprocessing.Process(target=worker, args=(queue,))
-    p.start()
+    time.sleep(3)
 
-    queue.put(MyFancyClass('Fancy Dan'))
+    queue.put(MyFancyClass('Fancy Dan-1'))
+    queue.put(MyFancyClass('Fancy Dan-2'))
+    queue.put(MyFancyClass('Fancy Dan-3'))
 
     # Wait for the worker to finish
     queue.close()
-    queue.join_thread()
-    p.join()
+    # queue.join_thread()
+    # for p in lst:
+    #     p.join()
+    time.sleep(3)
 '''
 Process-1
 Doing something fancy in Process-1 for Fancy Dan!
