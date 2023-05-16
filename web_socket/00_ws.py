@@ -6,14 +6,14 @@
 #end_pymotw_header
 # file: .pylintrc
 """
-program: websocket01.py
+program: 00_ws.py
     ENV:
         VSC Editor Encoding: UTF-8
         $ pip install websockets
     RUN:
         $ python -V
             Python 3.10.9
-        $ python websocket01.py
+        $ python 00_ws.py
 """
 from fastapi import FastAPI, WebSocket
 from fastapi.responses import HTMLResponse
@@ -76,4 +76,4 @@ if __name__ == "__main__":
     # uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
     uvicorn.run(app)
 '''
-'''                
+'''

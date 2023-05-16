@@ -1,0 +1,244 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <body>
+  <script src="https://unpkg.com/gojs@2.3.7/release/go.js"></script>
+  <p>
+    This is a minimalist HTML and JavaScript skeleton of the GoJS Sample
+    <a href="https://gojs.net/latest/samples/spacingZoom.html">spacingZoom.html</a>. It was automatically generated from a button on the sample page,
+    and does not contain the full HTML. It is intended as a starting point to adapt for your own usage.
+    For many samples, you may need to inspect the
+    <a href="https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/spacingZoom.html">full source on Github</a>
+    and copy other files or scripts.
+  </p>
+  <div id="allSampleContent" class="p-4 w-full">
+    <script id="code">
+    function init() {
+
+      // Since 2.2 you can also author concise templates with method chaining instead of GraphObject.make
+      // For details, see https://gojs.net/latest/intro/buildingObjects.html
+      const $ = go.GraphObject.make;  // for conciseness in defining templates
+
+      myDiagram = $(go.Diagram, "myDiagramDiv",  // create a Diagram for the DIV HTML element
+        {
+          commandHandler: new SpacingCommandHandler(),
+          // update the SpacingCommandHandler.space from the model at the end of each transaction
+          "ModelChanged": e => {
+            if (e.isTransactionFinished) {
+              myDiagram.commandHandler.space = myDiagram.model.modelData.space;
+            }
+          },
+          "undoManager.isEnabled": true  // enable undo & redo
+        });
+
+      // Define a simple Node template that cannot be shared with other Diagrams,
+      // because of the use of the Node.location Binding conversion functions.
+      // The SpacingCommandHandler also assumes the Node.location is bound to the data property named "loc".
+      myDiagram.nodeTemplate =
+        $(go.Node, "Auto",  // the Shape will go around the TextBlock
+          new go.Binding("location", "loc", spacedLocationParse).makeTwoWay(spacedLocationStringify),
+          $(go.Shape, "RoundedRectangle", { strokeWidth: 0 },
+            // Shape.fill is bound to Node.data.color
+            new go.Binding("fill", "color")),
+          $(go.TextBlock,
+            { margin: 8 },  // some room around the text
+            // TextBlock.text is bound to Node.data.key
+            new go.Binding("text", "key"))
+        );
+
+      // but use the default Link template, by not setting Diagram.linkTemplate
+
+      // create the model data that will be represented by Nodes and Links
+      myDiagram.model = new go.GraphLinksModel(
+        [
+          { key: "Alpha", color: "lightblue", loc: "0 0" },
+          { key: "Beta", color: "orange", loc: "100 0" },
+          { key: "Gamma", color: "lightgreen", loc: "0 100" },
+          { key: "Delta", color: "pink", loc: "100 100" }
+        ],
+        [
+          { from: "Alpha", to: "Beta" },
+          { from: "Alpha", to: "Gamma" },
+          { from: "Beta", to: "Beta" },
+          { from: "Gamma", to: "Delta" },
+          { from: "Delta", to: "Alpha" }
+        ]);
+
+      // the "space" property is kept on the Model.modelData too
+      myDiagram.model.modelData.space = 1.0;
+    }
+
+
+    // Conversion functions -- these only work with myDiagram, assuming it uses a SpacingCommandHandler
+
+    function spacedLocationParse(str) {
+      const cmd = myDiagram.commandHandler;
+      if (!(cmd instanceof SpacingCommandHandler)) throw new Error("not using SpacingCommandHandler");
+      const pt = go.Point.parse(str);
+      pt.x = (pt.x - cmd.spaceCenter.x) * cmd.space + cmd.spaceCenter.x;
+      if (cmd.isYSpaced) {
+        pt.y = (pt.y - cmd.spaceCenter.y) * cmd.space + cmd.spaceCenter.y;
+      }
+      return pt;
+    }
+
+    function spacedLocationStringify(pt, data) {
+      const cmd = myDiagram.commandHandler;
+      if (!cmd._isUpdating) {
+        pt = pt.copy();
+        pt.x = (pt.x - cmd.spaceCenter.x) / cmd.space + cmd.spaceCenter.x;
+        if (cmd.isYSpaced) {
+          pt.y = (pt.y - cmd.spaceCenter.y) / cmd.space + cmd.spaceCenter.y;
+        }
+        return go.Point.stringify(pt);
+      } else {
+        return data.loc;
+      }
+    }
+
+
+    // The custom CommandHandler that avoids changing the Diagram.scale
+    class SpacingCommandHandler extends go.CommandHandler {
+      constructor() {
+        super();
+        this._space = 1.0;  // replaces Diagram.scale; also copied to/from Model.modelData.space
+        this._spaceCenter = new go.Point(0, 0);  // not currently used -- should this be saved on modelData too?
+        this._isYSpaced = true;  // scale Y along with X?  This option is just for demonstration purposes.
+        this._isUpdating = false;
+      }
+
+      // Overrides of commands that scale the diagram -- change the space instead
+
+      decreaseZoom(factor) {
+        if (factor === undefined/*notpresent*/) factor = 1.0 / this.zoomFactor;
+        this.setSpace(this.space * factor);
+      }
+      canDecreaseZoom(factor) {
+        if (factor === undefined/*notpresent*/) factor = 1.0 / this.zoomFactor;
+        return this.checkSpace(this.space * factor);
+      }
+
+      increaseZoom(factor) {
+        if (factor === undefined/*notpresent*/) factor = 1.0 / this.zoomFactor;
+        this.setSpace(this.space / factor);
+      }
+      canIncreaseZoom(factor) {
+        if (factor === undefined/*notpresent*/) factor = 1.0 / this.zoomFactor;
+        return this.checkSpace(this.space / factor);
+      }
+
+      resetZoom(newspace) {
+        if (newspace === undefined/*notpresent*/) newspace = 1.0;
+        this.setSpace(newspace);
+      }
+      canResetZoom(newspace) {
+        return this.checkSpace(newspace);
+      }
+
+      // actually set a new value for SPACE
+      setSpace(s) {
+        this.space = Math.max(0.1, Math.min(10.0, s));
+      }
+
+      // validity check for a new value for SPACE
+      checkSpace(s) {
+        return 0.1 <= s && s <= 10.0;
+      }
+
+
+      // Properties for SpacingCommandHandler
+
+      get space() { return this._space; }
+      set space(val) {
+        if (val !== this._space) {
+          this._space = val;
+          const diagram = this.diagram;
+          if (diagram !== null) {  // store in model too, and support undo
+            diagram.model.setDataProperty(diagram.model.modelData, "space", val);
+          }
+          this.updateAllLocations();
+          // update the page showing the current value
+          document.getElementById("SPACE").textContent = val.toString();
+        }
+      }
+
+      get spaceCenter() { return this._spaceCenter; }
+      set spaceCenter(val) {
+        if (!val.equals(this._spaceCenter)) {
+          this._spaceCenter = val.copy();
+        }
+      }
+
+      get isYSpaced() { return this._isYSpaced; }
+      set isYSpaced(val) {
+        if (val !== this._isYSpaced) {
+          this._isYSpaced = val;
+          this.updateAllLocations();
+        }
+      }
+
+      // If the spacing or isYSpaced properties change value,
+      // we need to update the effective locations of all nodes.
+      // Assume Node.location is data bound to "loc" property.
+      updateAllLocations() {
+        const diagram = this.diagram;
+        if (diagram === null) return;
+        this._isUpdating = true;
+        diagram.skipsUndoManager = true;
+        diagram.startTransaction("respace nodes");
+        diagram.parts.each(p => p.updateTargetBindings("loc"));
+        diagram.nodes.each(n => n.updateTargetBindings("loc"));
+        diagram.commitTransaction("respace nodes");
+        diagram.skipsUndoManager = false;
+        this._isUpdating = false;
+      }
+    }
+    // end SpacingCommandHandler class
+
+
+    function onIsYSpacedToggled() {
+      myDiagram.commandHandler.isYSpaced = !myDiagram.commandHandler.isYSpaced;
+    }
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+
+<div id="sample">
+  <div id="myDiagramDiv" style="border: 1px solid black; width: 400px; height: 400px; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);"><canvas tabindex="0" width="398" height="398" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; letter-spacing: normal; word-spacing: normal; width: 398px; height: 398px;">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 398px; height: 398px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div>
+  Spacing factor: <span id="SPACE">1.0000000000000007</span>
+  <br>
+  <label><input type="checkbox" onclick="onIsYSpacedToggled()" checked="checked">Is Y Axis Spaced?</label>
+  <br>
+  <p>
+  Click in the diagram and then try zooming in and out of the diagram by using control-mouse-wheel.
+  If you don't want to hold down the control key, click the mouse wheel button in the diagram to
+  toggle between mouse wheel events zooming instead of scrolling.
+  </p>
+  <p>
+  This diagram uses a custom <a href="../api/symbols/CommandHandler.html" target="api">CommandHandler</a> to replace the standard zooming behavior.
+  The <a href="../api/symbols/CommandHandler.html#decreaseZoom" target="api">CommandHandler.decreaseZoom</a>, <a href="../api/symbols/CommandHandler.html#increaseZoom" target="api">CommandHandler.increaseZoom</a>, and
+  <a href="../api/symbols/CommandHandler.html#resetZoom" target="api">CommandHandler.resetZoom</a> commands no longer change the <a href="../api/symbols/Diagram.html#scale" target="api">Diagram.scale</a>.
+  Instead they change the effective <a href="../api/symbols/Part.html#location" target="api">Part.location</a> for all of the <a href="../api/symbols/Node.html" target="api">Node</a>s by changing
+  the value of the conversion function that is getting the location from the "loc" property on the node data.
+  </p>
+  <p>
+  As the value of SpacingCommandHandler.space changes, all of the Bindings on "loc" are re-evaluated,
+  causing the nodes to get new locations.  The value of the "loc" data property remains unchanged by the Binding.
+  However the TwoWay Binding does cause the "loc" data property to be modified when the user drags a node.
+  </p>
+  <p>
+  The conversion functions also depend on the SpacingCommandHandler.isYSpaced property, which can be toggled by the checkbox.
+  When false the conversion functions do not space along the Y axis, but only along the X axis.
+  </p>
+  <p>
+  Because the conversion functions are dependent on the particular Diagram,
+  and because the node template depends on the conversion functions,
+  the template cannot be used by other Diagrams.
+  </p>
+  <p>
+  The SpacingCommandHandler.space property is duplicated on the <a href="../api/symbols/Model.html#modelData" target="api">Model.modelData</a> object, both so that the information
+  is saved in the model as well as to support undo/redo.
+  </p>
+<p class="text-xs">GoJS version 2.3.7. Copyright 1998-2023 by Northwoods Software.</p></div>
+    <p><a href="https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/spacingZoom.html" target="_blank">View this sample page's source on GitHub</a></p></div>
+  </body>
+  </html>
