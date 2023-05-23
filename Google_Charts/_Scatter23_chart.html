@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google-Chart</title>
+    <script type="text/javascript" src="./js/loader.js"></script>
+    <script>
+        function init() {
+            google.charts.load('current', {'packages':['scatter']});
+            google.charts.setOnLoadCallback(drawChart);
+        }
+
+        var obj = {};
+
+        function drawChart() {
+            obj.data = new google.visualization.DataTable();
+            obj.data.addColumn('number', 'Hours Studied');
+            obj.data.addColumn('number', 'Final');
+            obj.data.addRows([
+                [0, 67], [1, 88], [2, 77],
+                [3, 93], [4, 85], [5, 91],
+                [6, 71], [7, 78], [8, 93],
+                [9, 80], [10, 82],[0, 75],
+                [5, 80], [3, 90], [1, 72],
+                [5, 75], [6, 68], [7, 98],
+                [3, 82], [9, 94], [2, 79],
+                [2, 95], [2, 86], [3, 67],
+                [4, 60], [2, 80], [6, 92],
+                [2, 81], [8, 79], [9, 83],
+                [3, 75], [1, 80], [3, 71],
+                [3, 89], [4, 92], [5, 85],
+                [6, 92], [7, 78], [6, 95],
+                [3, 81], [0, 64], [4, 85],
+                [2, 83], [3, 96], [4, 77],
+                [5, 89], [4, 89], [7, 84],
+                [4, 92], [9, 98]
+            ]);
+            obj.options = {
+                width: 800,
+                height: 500,
+                chart: {
+                    title: 'Students\' Final Grades',
+                    subtitle: 'based on hours studied'
+                },
+                hAxis: {title: 'Hours Studied'},
+                vAxis: {title: 'Grade'}
+            };
+            obj.chart = new google.charts.Scatter(document.querySelector('#chart_div'));
+            obj.chart.draw(obj.data, google.charts.Scatter.convertOptions(obj.options));
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="chart_div"></div>
+</body>
+</html>

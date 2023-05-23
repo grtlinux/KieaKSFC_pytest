@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google-Chart</title>
+    <script type="text/javascript" src="./js/loader.js"></script>
+    <script>
+        var obj = {};
+
+        function init() {
+            google.charts.load('current', {'packages':['corechart', 'bar']});
+            google.charts.setOnLoadCallback(drawChart);
+        }
+
+        function drawChart() {
+            obj.data = google.visualization.arrayToDataTable([
+                ['City', '2010 Population', '2000 Population'],
+                ['New York City, NY', 8175000, 8008000],
+                ['Los Angeles, CA', 3792000, 3694000],
+                ['Chicago, IL', 2695000, 2896000],
+                ['Houston, TX', 2099000, 1953000],
+                ['Philadelphia, PA', 1526000, 1517000],
+            ]);
+            obj.options = {
+                title: 'Population of Largest U.S. Cities',
+                chartArea: {width: '50%'},
+                isStacked: true,
+                hAxis: {title: 'Total Population', minValue: 0,},
+                vAxis: {title: 'City'}
+            };
+            obj.chart = new google.visualization.BarChart(document.querySelector('#chart_div'));
+            obj.chart.draw(obj.data, obj.options);
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="chart_div"></div>
+</body>
+</html>

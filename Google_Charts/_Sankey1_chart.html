@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google-Chart</title>
+    <script type="text/javascript" src="./js/loader.js"></script>
+    <script>
+        var obj = {};
+
+        function init() {
+            google.charts.load('current', {'packages':['sankey']});
+            google.charts.setOnLoadCallback(drawChart);
+        }
+
+        function drawChart() {
+            obj.data = new google.visualization.DataTable();
+            obj.data.addColumn('string', 'From');
+            obj.data.addColumn('string', 'To');
+            obj.data.addColumn('number', 'Weight');
+            obj.data.addRows([
+                [ 'A', 'X', 5 ],
+                [ 'A', 'Y', 7 ],
+                [ 'A', 'Z', 6 ],
+                [ 'B', 'X', 2 ],
+                [ 'B', 'Y', 9 ],
+                [ 'B', 'Z', 4 ],
+            ]);
+
+            obj.options = {
+                width: 600,
+                height: 300,
+            };
+
+            obj.chart = new google.visualization.Sankey(document.querySelector('#chart_div'));
+            obj.chart.draw(obj.data, obj.options);
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="chart_div"></div>
+</body>
+</html>

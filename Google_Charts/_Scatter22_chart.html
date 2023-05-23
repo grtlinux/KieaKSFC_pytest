@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google-Chart</title>
+    <script type="text/javascript" src="./js/loader.js"></script>
+    <script>
+        var obj = {};
+
+        function init() {
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+        }
+
+        function drawChart() {
+            obj.data = new google.visualization.DataTable();
+            obj.data.addColumn('number');
+            obj.data.addColumn('number');
+
+            var radius = 100;
+            for (var i = 0; i < 6.28; i += 0.1) {
+                obj.data.addRow([radius * Math.cos(i), radius * Math.sin(i)]);
+            }
+
+            // Our central point, which will jiggle.
+            obj.data.addRow([0, 0]);
+
+            obj.options = {
+                legend: 'none',
+                colors: ['#087037'],
+                pointShape: 'star',
+                pointSize: 18,
+                animation: {
+                    duration: 500,
+                    easing: 'inAndOut',
+                },
+                width: 500,
+                height: 500,
+            };
+
+            obj.chart = new google.visualization.ScatterChart(document.querySelector('#chart_div'));
+
+            // Start the animation by listening to the first 'ready' event.
+            google.visualization.events.addOneTimeListener(obj.chart, 'ready', randomWalk);
+
+            // Control all other animations by listening to the 'animationfinish' event.
+            google.visualization.events.addListener(obj.chart, 'animationfinish', randomWalk);
+
+            obj.chart.draw(obj.data, obj.options);
+
+            function randomWalk() {
+                var x = obj.data.getValue(obj.data.getNumberOfRows() - 1, 0);
+                var y = obj.data.getValue(obj.data.getNumberOfRows() - 1, 1);
+                x += 5 * (Math.random() - 0.5);
+                y += 5 * (Math.random() - 0.5);
+                if (x * x + y * y > radius * radius) {
+                    // Out of bounds. Bump toward center.
+                    x += Math.random() * ((x < 0) ? 5 : -5);
+                    y += Math.random() * ((y < 0) ? 5 : -5);
+                }
+                obj.data.setValue(obj.data.getNumberOfRows() - 1, 0, x);
+                obj.data.setValue(obj.data.getNumberOfRows() - 1, 1, y);
+                obj.chart.draw(obj.data, obj.options);
+            }
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="chart_div"></div>
+</body>
+</html>

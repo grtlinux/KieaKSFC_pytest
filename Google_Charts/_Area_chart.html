@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google-Chart</title>
+    <script type="text/javascript" src="./js/loader.js"></script>
+    <script>
+        var obj = {};
+
+        function init(){
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+        }
+
+        function drawChart(){
+            obj.data = google.visualization.arrayToDataTable([
+                ['Year', 'Sales', 'Expenses'],
+                ['2013',  1000,      400],
+                ['2014',  1170,      460],
+                ['2015',  660,       1120],
+                ['2016',  1030,      540],
+                ['2017',  1000,      580],
+                ['2018',  1230,      640],
+            ]);
+            obj.options = {
+                title: 'Company Performance',
+                hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+                vAxis: {minValue: 0},
+                width: '100%',
+                height: '500',
+            };
+            obj.chart = new google.visualization.AreaChart(document.querySelector('#chart_div'));
+            obj.chart.draw(obj.data, obj.options);
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="chart_div"></div>
+</body>
+</html>
