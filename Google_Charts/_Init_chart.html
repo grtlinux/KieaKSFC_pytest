@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google-Chart</title>
+    <script src="./js/loader.js"></script>
+    <script>
+        var obj = {};
+
+        function init() {
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            setTimeout(() => {
+                alert('Hello');
+                obj.data.addRows([
+                    ['2008',  1100,     400],
+                    ['2009',  970,      360],
+                    ['2010',  860,     1020],
+                    ['2011',  1030,     440],
+                ]);
+                obj.chart.draw(obj.data, obj.options);
+            }, 2000);
+        }
+        function drawChart() {
+            obj.data = google.visualization.arrayToDataTable([
+                ['Year', 'Sales', 'Expenses'],
+                ['2004',  1000,      400],
+                ['2005',  1170,      460],
+                ['2006',  660,       1120],
+                ['2007',  1030,      540],
+            ]);
+            obj.options = {
+                title: 'Company Performance',
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                width: 500,
+                height: 300,
+            };
+            obj.chart = new google.visualization.LineChart(document.querySelector('#chart_div'));
+            obj.chart.draw(obj.data, obj.options);
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="chart_div"></div>
+</body>
+</html>

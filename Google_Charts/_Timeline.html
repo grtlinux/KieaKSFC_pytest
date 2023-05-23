@@ -1,33 +1,42 @@
-<html>
-  <head>
-    <script type="text/javascript" src="./loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['timeline']});
-      google.charts.setOnLoadCallback(drawChart);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Google-Chart</title>
+	<script type="text/javascript" src="./js/loader.js"></script>
+	<script>
+		var obj = {};
 
-      function drawChart() {
-        var container = document.getElementById('timeline');
-        var chart = new google.visualization.Timeline(container);
-        var dataTable = new google.visualization.DataTable();
+		function init() {
+			google.charts.load('current', {'packages':['timeline']});
+			google.charts.setOnLoadCallback(drawChart);
+		}
 
-        dataTable.addColumn({ type: 'string', id: 'President' });
-        dataTable.addColumn({ type: 'date', id: 'Start' });
-        dataTable.addColumn({ type: 'date', id: 'End' });
-        dataTable.addRows([
-          [ 'Washington', new Date(1789, 3, 30), new Date(1797, 2, 4) ],
-          [ 'Adams 1',    new Date(1797, 2, 4),  new Date(1801, 2, 4) ],
-          [ 'Jefferson',  new Date(1801, 2, 4),  new Date(1809, 2, 4) ],
-          [ 'Madison',    new Date(1809, 2, 4),  new Date(1817, 2, 4) ],
-          [ 'Monroe',     new Date(1817, 2, 4),  new Date(1825, 2, 4) ],
-          [ 'Adams 2',    new Date(1825, 2, 4),  new Date(1829, 2, 4) ],
-          [ 'Jackson',    new Date(1829, 2, 4),  new Date(1837, 2, 4) ],
-        ]);
+		function drawChart() {
+			obj.data = new google.visualization.DataTable();
+			obj.data.addColumn('string', 'President');
+			obj.data.addColumn('date', 'Start');
+			obj.data.addColumn('date', 'End');
+			obj.data.addRows([
+				[ 'Washington', new Date(1789, 3, 30), new Date(1797, 2, 4) ],
+				[ 'Adams 1',    new Date(1797, 2, 4),  new Date(1801, 2, 4) ],
+				[ 'Jefferson',  new Date(1801, 2, 4),  new Date(1809, 2, 4) ],
+				[ 'Madison',    new Date(1809, 2, 4),  new Date(1817, 2, 4) ],
+				[ 'Monroe',     new Date(1817, 2, 4),  new Date(1825, 2, 4) ],
+				[ 'Adams 2',    new Date(1825, 2, 4),  new Date(1829, 2, 4) ],
+				[ 'Jackson',    new Date(1829, 2, 4),  new Date(1837, 2, 4) ],
+			]);
 
-        chart.draw(dataTable);
-      }
-    </script>
-  </head>
-  <body>
-    <div id="timeline" style="height: 350px;"></div>
-  </body>
+			obj.options = {title:'President of USA', width:800, height:350};
+
+			obj.chart = new google.visualization.Timeline(document.getElementById('chart_div'));
+			obj.chart.draw(obj.data, obj.options);
+		}
+	</script>
+</head>
+<body onload="init()">
+	<div id="chart_div"></div>
+</body>
 </html>

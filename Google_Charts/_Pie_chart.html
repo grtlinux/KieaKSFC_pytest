@@ -1,46 +1,39 @@
-<html>
-  <head>
-    <!--Load the AJAX API-->
-    <script type="text/javascript" src="./loader.js"></script>
-    <script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Google-Chart</title>
+	<script type="text/javascript" src="./js/loader.js"></script>
+	<script>
+		var obj = {};
 
-      // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
+		function init() {
+			google.charts.load('current', {'packages':['corechart']});
+			google.charts.setOnLoadCallback(drawChart);
+		}
 
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
+		function drawChart() {
+			obj.data = new google.visualization.DataTable();
+			obj.data.addColumn('string', 'Topping');
+			obj.data.addColumn('number', 'Slices');
+			obj.data.addRows([
+				['Mushrooms', 3],
+				['Onions', 1],
+				['Olives', 1],
+				['Zucchini', 1],
+				['Pepperoni', 2],
+			]);
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
+			obj.options = {'title':'How Much Pizza I Ate Last Night', 'width':400, 'height':300};
 
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2],
-        ]);
-
-        // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-
-  <body>
-    <!--Div that will hold the pie chart-->
-    <div id="chart_div"></div>
-  </body>
+			obj.chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+			obj.chart.draw(obj.data, obj.options);
+		}
+	</script>
+</head>
+<body onload="init()">
+	<div id="chart_div"></div>
+</body>
 </html>

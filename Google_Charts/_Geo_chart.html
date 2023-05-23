@@ -1,30 +1,58 @@
-<html>
-  <head>
-    <script type="text/javascript" src="./loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['geochart'],});
-      google.charts.setOnLoadCallback(drawRegionsMap);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Google-Chart</title>
+	<script type="text/javascript" src="./js/loader.js"></script>
+	<script>
+		var obj = {};
 
-      function drawRegionsMap() {
-        var data = google.visualization.arrayToDataTable([
-          ['Country', 'Popularity'],
-          ['Germany', 200],
-          ['United States', 300],
-          ['Brazil', 400],
-          ['Canada', 500],
-          ['France', 600],
-          ['RU', 700]
-        ]);
+		function init() {
+			google.charts.load('current', {'packages':['geochart']});
+			google.charts.setOnLoadCallback(drawChart);
+		}
 
-        var options = {};
+		function drawChart() {
+			obj.data = new google.visualization.DataTable();
+			obj.data.addColumn('string', 'Country');
+			obj.data.addColumn('number', 'Popularity');
+			obj.data.addColumn('number', 'Area');
+			obj.data.addRows([
+				['Germany', 200, 300],
+				['United States', 300, 400],
+				['Brazil', 400, 500],
+				['Canada', 500, 600],
+				['France', 600, 700],
+				['RU', 700, 800],
+				['South Korea', 800, 900],
+				['Japan', 900, 1000],
+				['India', 1000, 1100],
+				['Italy', 1100, 1200],
+				['China', 1200, 1300],
+				['Colombia', 1300, 1400],
+				['Mexico', 1400, 1500],
+				['Spain', 1500, 1600],
+				['Argentina', 1600, 1700],
+				['Poland', 1700, 1800],
+				['South Africa', 1800, 1900],
+			]);
 
-        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+			obj.options = {
+				displayMode: 'regions',
+				// region: 'US',
+				// resolution: 'provinces',
+				width: 900,
+				height: 600,
+			};
 
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-    <div id="regions_div" style="width: 900px; height: 500px;"></div>
-  </body>
+			obj.chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+			obj.chart.draw(obj.data, obj.options);
+		}
+  </script>
+</head>
+<body onload="init()">
+	<div id="chart_div"></div>
+</body>
 </html>
