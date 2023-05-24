@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google-Chart</title>
+    <script type="text/javascript" src="./js/loader.js"></script>
+    <script>
+        function init() {
+            google.charts.load('current', {'packages':['corechart', 'scatter']});
+            google.charts.setOnLoadCallback(drawStuff);
+        }
+
+        var obj = {};
+        function drawStuff() {
+            var button = document.getElementById('change-chart');
+            var chartDiv = document.getElementById('chart_div');
+
+            obj.data = new google.visualization.DataTable();
+            obj.data.addColumn('number', 'Student ID');
+            obj.data.addColumn('number', 'Hours Studied');
+            obj.data.addColumn('number', 'Final');
+            obj.data.addRows([
+                [0, 0, 67],  [1, 1, 88],   [2, 2, 77],
+                [3, 3, 93],  [4, 4, 85],   [5, 5, 91],
+                [6, 6, 71],  [7, 7, 78],   [8, 8, 93],
+                [9, 9, 80],  [10, 10, 82], [11, 0, 75],
+                [12, 5, 80], [13, 3, 90],  [14, 1, 72],
+                [15, 5, 75], [16, 6, 68],  [17, 7, 98],
+                [18, 3, 82], [19, 9, 94],  [20, 2, 79],
+                [21, 2, 95], [22, 2, 86],  [23, 3, 67],
+                [24, 4, 60], [25, 2, 80],  [26, 6, 92],
+                [27, 2, 81], [28, 8, 79],  [29, 9, 83]
+            ]);
+
+            obj.materialOptions = {
+                chart: {
+                    title: 'Students\' Final Grades',
+                    subtitle: 'based on hours studied'
+                },
+                width: 800,
+                height: 500,
+                series: {
+                    0: {axis: 'hours studied'},
+                    1: {axis: 'final grade'}
+                },
+                axes: {
+                    y: {
+                        'hours studied': {label: 'Hours Studied'},
+                        'final grade': {label: 'Final Exam Grade'}
+                    }
+                }
+            };
+
+            obj.classicOptions = {
+                width: 800,
+                series: {
+                    0: {targetAxisIndex: 0},
+                    1: {targetAxisIndex: 1}
+                },
+                title: 'Students\' Final Grades - based on hours studied',
+                vAxes: {
+                    // Adds titles to each axis.
+                    0: {title: 'Hours Studied'},
+                    1: {title: 'Final Exam Grade'}
+                }
+            };
+
+            function drawMaterialChart() {
+                obj.materialChart = new google.charts.Scatter(chartDiv);
+                obj.materialChart.draw(obj.data, google.charts.Scatter.convertOptions(obj.materialOptions));
+                button.innerText = 'Change to Classic';
+                button.onclick = drawClassicChart;
+            }
+
+            function drawClassicChart() {
+                obj.classicChart = new google.visualization.ScatterChart(chartDiv);
+                obj.classicChart.draw(obj.data, obj.classicOptions);
+                button.innerText = 'Change to Material';
+                button.onclick = drawMaterialChart;
+            }
+
+            drawMaterialChart();
+        };
+    </script>
+</head>
+<body onload="init()">
+    <div id="change-chart" style="width: 500px; height: 50px;"></div>
+    <div id="chart_div"></div>
+</body>
+</html>
