@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoJS</title>
+    <script src="./js/go.js"></script>
+    <script>
+        function init() {
+            const $ = go.GraphObject.make;
+            const myDiagram = $(go.Diagram, "myDiagramDiv", {"undoManager.isEnabled": true});
+            myDiagram.nodeTemplate = $(go.Node, "Auto"
+                , $(go.Shape, "Rectangle", {stroke:null}, new go.Binding("fill", "color"))
+                , $(go.TextBlock, {margin:6, font:"18px sans-serif"}, new go.Binding("text")),
+            );
+            myDiagram.model = new go.GraphLinksModel(
+                [
+                    {key: 1, text: "Alpha", color: "lightblue"},
+                    {key: 2, text: "Beta", color: "orange"},
+                    {key: 3, text: "Gamma", color: "lightgreen"},
+                    {key: 4, text: "Delta", color: "pink"}
+                ],
+                [
+                    {from: "1", to: "2"},
+                    {from: "1", to: "3"},
+                    {from: "2", to: "2"},
+                    {from: "3", to: "4"},
+                    {from: "4", to: "1"}
+                ]
+            );
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="myDiagramDiv" style="border: solid 1px blue; width:600px; height:400px; background-color:#DAE4E4;"></div>
+</body>
+</html>

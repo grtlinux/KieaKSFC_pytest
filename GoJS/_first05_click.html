@@ -24,7 +24,8 @@
                     }
                 })
                 .add(new go.Picture({ margin:10, width:50, height:50, background:"red"}).bind("source"))
-                .add(new go.TextBlock("Default Text", { margin:12, stroke:"white", font:"bold 16px sans-serif"}).bind("text", "name"));
+                .add(new go.TextBlock("Default Text", { margin:12, stroke:"white", font:"bold 16px sans-serif"}).bind("text", "name"))
+                .add(new go.Shape("Rectangle", { stroke:null, name:"SHAPE"}).bind("fill", "color"));
             myDiagram.linkTemplate = new go.Link({ routing: go.Link.Orthogonal, corner: 5})
                 // .add(new go.Shape())
                 .add(new go.Shape({strokeWidth:3, stroke:"#555"}));
@@ -39,8 +40,10 @@
                 ]
             );
 
+            var node;
+
             // select
-            const node = myDiagram.findNodeForKey("1");
+            node = myDiagram.findNodeForKey("1");
             myDiagram.select(node);
             console.log(node.data);
 
@@ -52,10 +55,36 @@
                         console.log(node.data);
                     })
                 }, "decrease scale");
+            
+            // selection listener
+            const selectionButton = document.getElementById("selectionButton");
+            selectionButton.addEventListener('click', () => {
+                myDiagram.commit(d => {
+                    d.selection.each(node => {
+                        const shape = node.findObject("SHAPE");
+                        if (shape !== null) {
+                            shape.fill = "red";
+                        }
+                    });
+                }, "change color")
+            });
+
+            // find node for key
+            node = myDiagram.findNodeForKey(1);
+            var shape = node.findObject("SHAPE");
+            shape.fill = "red";
+            console.log(node.data.color);
+            
+            // collection
+            myDiagram.model.commit(m => {
+                m.set(node.data, "color", "red")
+            });
+            console.log(node.data.color);
         }
     </script>
 </head>
 <body onload="init()">
     <div id="myDiagramDiv" style="border: solid 1px blue; width:600px; height:400px; background-color:#DAE4E4;"></div>
+    <div id="selectionButton">Select Item</div>
 </body>
 </html>
