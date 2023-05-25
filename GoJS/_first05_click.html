@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoJS</title>
+    <script src="./js/go.js"></script>
+    <script>
+        function init() {
+            const myDiagram = new go.Diagram("myDiagramDiv", {
+                "undoManager.isEnabled": true,
+                layout: new go.TreeLayout({angle:90, layerSpacing:35})
+            });
+            myDiagram.nodeTemplate = new go.Node("Horizontal", {
+                    background: "#44CCFF",
+                    click : function(e, obj) {
+                        const clicked = obj.part;
+                        if (clicked !== null) {
+                            const thisemp = clicked.data;
+                            // alert("Clicked on " + thisemp.name + "!");
+                            console.log("Clicked on " + thisemp.name + "!");
+                        }
+                    }
+                })
+                .add(new go.Picture({ margin:10, width:50, height:50, background:"red"}).bind("source"))
+                .add(new go.TextBlock("Default Text", { margin:12, stroke:"white", font:"bold 16px sans-serif"}).bind("text", "name"));
+            myDiagram.linkTemplate = new go.Link({ routing: go.Link.Orthogonal, corner: 5})
+                // .add(new go.Shape())
+                .add(new go.Shape({strokeWidth:3, stroke:"#555"}));
+            myDiagram.model = new go.TreeModel(
+                [
+                    { key: "1",              name: "Don Meow",   source: "./images/cat1.png" },
+                    { key: "2", parent: "1", name: "Demeter",    source: "./images/cat2.png" },
+                    { key: "3", parent: "1", name: "Copricat",   source: "./images/cat3.png" },
+                    { key: "4", parent: "3", name: "Jellylorum", source: "./images/cat4.png" },
+                    { key: "5", parent: "3", name: "Alonzo",     source: "./images/cat5.png" },
+                    { key: "6", parent: "2", name: "Munkustrap", source: "./images/cat6.png" }
+                ]
+            );
+
+            // select
+            const node = myDiagram.findNodeForKey("1");
+            myDiagram.select(node);
+            console.log(node.data);
+
+            // collections
+            myDiagram.commit(d => {
+                d.nodes.each(node => {
+                        if (node.data.name === "Alonzo") return;
+                        node.scale = 0.5; // shrink each node
+                        console.log(node.data);
+                    })
+                }, "decrease scale");
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="myDiagramDiv" style="border: solid 1px blue; width:600px; height:400px; background-color:#DAE4E4;"></div>
+</body>
+</html>

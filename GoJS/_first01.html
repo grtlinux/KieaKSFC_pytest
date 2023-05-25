@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoJS</title>
+    <script src="./js/go.js"></script>
+    <script>
+        function init() {
+            // enable Ctrl-Z to undo and Ctrl-Y to redo
+            var myDiagram = new go.Diagram("myDiagramDiv", {"undoManager.isEnabled": true});
+            myDiagram.nodeTemplate = new go.Node( "Vertical", { locationSpot: go.Spot.Center },).bind("location","loc")
+                .add(new go.Shape("RoundedRectangle",).bind("figure", "fig"))
+                .add(new go.TextBlock("default text",).bind("text",));
+            myDiagram.model = new go.Model(
+                [
+                    { key: "Alpha" },
+                    { key: "Beta" },
+                    { key: "Gamma" },
+                    { key: "Delta" },
+                    { key: "Epsilon" },
+                    // { key: "Zeta" },
+                    // { key: "Eta" },
+                    // { key: "Theta" },
+                    // { key: "Iota" },
+                    // { key: "Kappa" },
+                    // { key: "Lambda" },
+                    // { key: "Mu" },
+                    // { key: "Nu" },
+                    // { key: "Xi" },
+                    // { key: "Omicron" },
+                    // { key: "Pi" },
+                    // { key: "Rho" },
+                    // { key: "Sigma" },
+                    // { key: "Tau" },
+                    // { key: "Upsilon" },
+                    // { key: "Phi" },
+                    // { key: "Chi" },
+                    // { key: "Psi" },
+                    // { key: "Omega" },
+                ]
+            );
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="myDiagramDiv" style="border: solid 1px blue; width:400px; height:400px; background-color:#DAE4E4;"></div>
+</body>
+</html>
