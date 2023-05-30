@@ -1,0 +1,36 @@
+/* Horizontal */
+body {margin:0}
+
+.icon-bar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+}
+
+.icon-bar a {
+    /* box */
+    margin: 0;
+    outline: none;
+    border: none;
+    padding: 12px 0;
+    
+    /* text */
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 36px;
+    color: white;
+
+    /* transition * /
+    transition: all 0.3s ease; */
+    
+    float: left;
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #04AA6D;
+}

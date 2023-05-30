@@ -1,0 +1,36 @@
+/* vertical */
+body {margin:0}
+
+.icon-bar {
+    width: 90px;
+    background-color: #555;
+}
+
+.icon-bar a {
+    /* box */
+    margin: 0;
+    outline: none;
+    border: none;
+    padding: 16px 0;
+
+    /* text */
+    width: inherit;
+    height: inherit;
+    text-align: center;
+    font-size: 36px;
+    color: white;
+    
+    /* transition * /
+    transition: all 0.3s ease; */
+    
+    /* vertical */
+    display: block;
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #04AA6D;
+}
